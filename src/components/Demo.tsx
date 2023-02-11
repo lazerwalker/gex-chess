@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 
-import WithMoveValidation from "./GameView";
+import PlayableChessBoard from "./GameView";
 
 class Demo extends Component {
   render() {
     return (
       <div>
         <div style={boardsContainer}>
-          <WithMoveValidation />
+          <PlayableChessBoard white="human" black="ai" />
         </div>
       </div>
     );

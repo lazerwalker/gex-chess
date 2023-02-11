@@ -5,29 +5,40 @@ import { Chess } from "chess.js";
 import Chessboard from "chessboardjsx";
 import engine, { Engine } from "../engine";
 
-class EngineChessBoard extends Component {
+type PlayerType = "human" | "ai";
+
+interface Props {
+  white: PlayerType;
+  black: PlayerType;
+}
+
+export default class PlayableChessBoard extends Component<Props, any> {
   game: Chess;
   engine: Engine;
   makeMove: Function;
 
-  static propTypes = { children: PropTypes.func };
-
   state = {
     fen: "start",
+
     // square styles for active drop square
     dropSquareStyle: {},
     // custom square styles
+
     squareStyles: {},
     // square with the currently clicked piece
+
     pieceSquare: "",
     // currently clicked square
+
     square: "",
     // array of past game moves
+
     history: [],
   };
 
-  componentDidMount() {
+  componentDidMount = () => {
     this.game = new Chess();
+    this.game.turn;
     engine().then((e) => {
       e.addEventListener("bestmove", (move) => {
         console.log("Move", move);
@@ -44,7 +55,7 @@ class EngineChessBoard extends Component {
       this.makeMove = e.makeMove;
       this.makeMove(this.game.fen());
     });
-  }
+  };
 
   // keep clicked square style and remove hint squares
   removeHighlightSquare = () => {
@@ -157,56 +168,26 @@ class EngineChessBoard extends Component {
   render() {
     const { fen, dropSquareStyle, squareStyles } = this.state;
 
-    return this.props.children({
-      squareStyles,
-      position: fen,
-      onMouseOverSquare: this.onMouseOverSquare,
-      onMouseOutSquare: this.onMouseOutSquare,
-      onDrop: this.onDrop,
-      dropSquareStyle,
-      onDragOverSquare: this.onDragOverSquare,
-      onSquareClick: this.onSquareClick,
-      onSquareRightClick: this.onSquareRightClick,
-    });
+    return (
+      <Chessboard
+        id="game"
+        width={320}
+        position={fen}
+        onDrop={this.onDrop}
+        onMouseOverSquare={this.onMouseOverSquare}
+        onMouseOutSquare={this.onMouseOutSquare}
+        boardStyle={{
+          borderRadius: "5px",
+          boxShadow: `0 5px 15px rgba(0, 0, 0, 0.5)`,
+        }}
+        squareStyles={squareStyles}
+        dropSquareStyle={dropSquareStyle}
+        onDragOverSquare={this.onDragOverSquare}
+        onSquareClick={this.onSquareClick}
+        onSquareRightClick={this.oonSquareRightClick}
+      />
+    );
   }
-}
-
-export default function WithMoveValidation() {
-  return (
-    <div>
-      <EngineChessBoard>
-        {({
-          position,
-          onDrop,
-          onMouseOverSquare,
-          onMouseOutSquare,
-          squareStyles,
-          dropSquareStyle,
-          onDragOverSquare,
-          onSquareClick,
-          onSquareRightClick,
-        }) => (
-          <Chessboard
-            id="game"
-            width={320}
-            position={position}
-            onDrop={onDrop}
-            onMouseOverSquare={onMouseOverSquare}
-            onMouseOutSquare={onMouseOutSquare}
-            boardStyle={{
-              borderRadius: "5px",
-              boxShadow: `0 5px 15px rgba(0, 0, 0, 0.5)`,
-            }}
-            squareStyles={squareStyles}
-            dropSquareStyle={dropSquareStyle}
-            onDragOverSquare={onDragOverSquare}
-            onSquareClick={onSquareClick}
-            onSquareRightClick={onSquareRightClick}
-          />
-        )}
-      </EngineChessBoard>
-    </div>
-  );
 }
 
 const squareStyling = ({ pieceSquare, history }) => {
