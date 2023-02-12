@@ -1,5 +1,5 @@
 import React, { Component, CSSProperties, useEffect, useState } from "react";
-import { Chess, Move, Square } from "chess.js";
+import { Chess, Color, Move, Square } from "chess.js";
 
 import Chessboard from "chessboardjsx";
 import ChessEngine, { Engine } from "../engine";
@@ -7,16 +7,18 @@ import ChessEngine, { Engine } from "../engine";
 type PlayerType = "human" | "ai";
 
 interface Props {
-  white: PlayerType;
-  black: PlayerType;
+  w: PlayerType;
+  b: PlayerType;
 }
 
 export default function (props: Props) {
   const [engine, setEngine] = useState<Engine>();
   const [game, setGame] = useState(new Chess());
   const [fen, setFen] = useState("start");
-  const [pieceSquare, setPieceSquare] = useState<string | undefined>();
+  const [pieceSquare, setPieceSquare] = useState<Square | undefined>();
   const [history, setHistory] = useState<(Move & { fen: string })[]>([]);
+
+  const [currentMoveColor, setCurrentMoveColor] = useState<Color>("w");
 
   const [dropSquareStyle, setDropSquareStyle] = useState<any>();
 
@@ -28,40 +30,46 @@ export default function (props: Props) {
       const engine = await ChessEngine();
       setEngine(engine);
       engine.addEventListener("bestmove", (move) => {
-        console.log("Move", move);
-        game.move(move);
-
-        setFen(game.fen());
-        setHistory(game.history({ verbose: true }));
-        setLastMoveSquares([move.from, move.to]);
-
-        // engine.makeMove(game.fen());
+        makeMove(move);
       });
 
       engine.newGame();
-      // engine.makeMove(game.fen());
     })();
   }, []);
 
-  const onDrop = ({ sourceSquare, targetSquare }) => {
-    console.log("On drop", sourceSquare, targetSquare);
-    // see if the move is legal
-    let move = game.move({
-      from: sourceSquare,
-      to: targetSquare,
-      promotion: "q", // always promote to a queen for example simplicity
-    });
+  const makeMove = (move: Move | Partial<Move>) => {
+    const finishedMove = game.move(move as Move);
 
-    // illegal move
-    if (move === null) return;
-
-    setFen(fen);
+    setFen(game.fen());
     setHistory(game.history({ verbose: true }));
-    setLastMoveSquares([sourceSquare, targetSquare]);
+    setLastMoveSquares([finishedMove.from, finishedMove.to]);
+
+    setPieceSquare(undefined);
+    setPossibleMoveSquares([]);
+
+    const playerType = props[game.turn()];
+    if (playerType === "ai") {
+      if (!engine) {
+        console.log("RACE CONDITION: Engine does not exist yet");
+        return;
+      }
+      engine.makeMove(game.fen());
+    }
+  };
+
+  const onDrop = ({ sourceSquare, targetSquare }) => {
+    try {
+      makeMove({
+        from: sourceSquare,
+        to: targetSquare,
+        promotion: "q", // always promote to a queen for example simplicity
+      });
+    } catch (e) {
+      console.log("Could not make drop move", sourceSquare, targetSquare, e);
+    }
   };
 
   const highlightPossibleMoves = (square: Square, force: boolean = false) => {
-    console.log("Highlighting possible moves");
     // get list of possible moves for this square
     let moves: Move[] = game.moves({
       square: square,
@@ -77,7 +85,6 @@ export default function (props: Props) {
       squaresToHighlight.push(moves[i].to);
     }
     setPossibleMoveSquares(squaresToHighlight);
-    console.log(squaresToHighlight);
   };
 
   const onMouseOverSquare = (square: Square) => {
@@ -117,21 +124,21 @@ export default function (props: Props) {
 
       try {
         // Will throw if move is invalid
-        game.move({
+        makeMove({
           from: pieceSquare,
           to: square,
           promotion: "q", // always promote to a queen for example simplicity
         });
-
-        setFen(game.fen());
-        setHistory(game.history({ verbose: true }));
-        setPieceSquare(undefined);
-        setPossibleMoveSquares([]);
-      } catch {
-        console.log("Invalid move!", pieceSquare, square);
+      } catch (e) {
+        console.log("Invalid move!", pieceSquare, square, e);
       } finally {
       }
     } else {
+      let moves: Move[] = game.moves({
+        square: square,
+        verbose: true,
+      });
+      if (moves.length === 0) return;
       setPieceSquare(square);
     }
   };

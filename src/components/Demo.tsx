@@ -7,7 +7,7 @@ class Demo extends Component {
     return (
       <div>
         <div style={boardsContainer}>
-          <PlayableChessBoard white="human" black="ai" />
+          <PlayableChessBoard w="human" b="ai" />
         </div>
       </div>
     );
