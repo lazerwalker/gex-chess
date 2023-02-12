@@ -9,3 +9,7 @@ body {
   font-family: 'BirdSeed';
   src: url('/libraries/birdseed.ttf') format('truetype')
 }
+
+[data-squareid] div div {
+  font-family: 'BirdSeed' !important;
+}

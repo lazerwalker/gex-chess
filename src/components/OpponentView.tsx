@@ -4,16 +4,21 @@ import Lady from "../../libraries/pixel-ladies-free/003.png";
 
 export default function () {
   return (
-    <div>
+    <div
+      style={{
+        marginBottom: "40px",
+        marginTop: "20px",
+        height: "120px",
+      }}
+    >
       <div
         style={{
           backgroundImage: `url("${Lady}")`,
           boxSizing: "border-box",
           imageRendering: "pixelated",
-          width: "80px",
-          height: "80px",
+          width: "120px",
+          height: "120px",
           backgroundSize: "contain",
-          marginBottom: "30px",
           float: "left",
           display: "inline-block",
         }}
@@ -23,9 +28,9 @@ export default function () {
           boxSizing: "border-box",
           color: "#7C3F58",
           fontFamily: "'BirdSeed', sans-serif",
-          paddingLeft: "10px",
+          paddingLeft: "5px",
           paddingTop: "10px",
-          width: "240px",
+          width: "200px",
           float: "left",
           display: "inline-block",
         }}
