@@ -18,24 +18,26 @@ export default function (props: Props) {
   const [pieceSquare, setPieceSquare] = useState<Square | undefined>();
   const [history, setHistory] = useState<(Move & { fen: string })[]>([]);
 
-  const [currentMoveColor, setCurrentMoveColor] = useState<Color>("w");
-
   const [dropSquareStyle, setDropSquareStyle] = useState<any>();
 
   const [lastMoveSquares, setLastMoveSquares] = useState<[Square, Square]>();
   const [possibleMoveSquares, setPossibleMoveSquares] = useState<Square[]>();
 
   useEffect(() => {
-    (async () => {
-      const engine = await ChessEngine();
-      setEngine(engine);
-      engine.addEventListener("bestmove", (move) => {
-        makeMove(move);
-      });
-
-      engine.newGame();
-    })();
+    ChessEngine().then((e) => setEngine(e));
   }, []);
+
+  useEffect(() => {
+    if (!engine) return;
+    engine.addEventListener("bestmove", (move) => {
+      makeMove(move);
+    });
+
+    engine.newGame();
+    if (props.w === "ai") {
+      engine.makeMove(game.fen());
+    }
+  }, [engine]);
 
   const makeMove = (move: Move | Partial<Move>) => {
     const finishedMove = game.move(move as Move);
