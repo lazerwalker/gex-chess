@@ -1,8 +1,9 @@
-import React, { Component, CSSProperties, useEffect, useState } from "react";
-import { Chess, Color, Move, Square } from "chess.js";
+import React, { CSSProperties, useEffect, useState } from "react";
+import { Chess, Move, Square } from "chess.js";
 
 import Chessboard from "chessboardjsx";
 import ChessEngine, { Engine } from "../engine";
+import generateBark from "../barkManager";
 
 type PlayerType = "human" | "ai";
 
@@ -48,6 +49,8 @@ export default function (props: Props) {
 
     setPieceSquare(undefined);
     setPossibleMoveSquares([]);
+
+    console.log(generateBark(game));
 
     const playerType = props[game.turn()];
     if (playerType === "ai") {

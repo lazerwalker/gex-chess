@@ -1,0 +1,11 @@
+move.to === "e4" && history.length === 1
+Opening E4, a true classic!
+
+history.length === 2 && prev.to === "e4" && move.to === "e5"
+And a classic response!
+
+move.to === "a1" && move.piece === "k"
+Knight to A1! You can lead a horse to steak sauce, but you can't make them drink!
+
+move.to === "c5" && prev.to === "e4" && history.length === 2
+Never go in against a Sicilian when death is on the line!

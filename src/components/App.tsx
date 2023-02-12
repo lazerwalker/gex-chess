@@ -7,7 +7,7 @@ class App extends Component {
     return (
       <div>
         <div style={boardsContainer}>
-          <PlayableChessBoard w="ai" b="ai" />
+          <PlayableChessBoard w="human" b="human" />
         </div>
       </div>
     );
