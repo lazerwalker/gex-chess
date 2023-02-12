@@ -3,7 +3,7 @@ import { sample } from "lodash";
 
 interface Bark {
   // Verbose history, reversed so 0 is most recent
-  fn: string; //(move: Move, prev: Move, history: Move[]) => boolean;
+  fn: string; //(move: Move, prev: Move, history: Move[], pgn: string) => boolean;
 
   content: string[];
 }
@@ -26,11 +26,13 @@ export default function generateBark(game: Chess) {
       const editedString = b.fn
         .replace(/move/g, "this.move")
         .replace(/prev/g, "this.prev")
-        .replace(/history/g, "this.history");
+        .replace(/history/g, "this.history")
+        .replace(/pgn/g, "this.pgn");
       return wrappedEval(editedString, {
         move: history[0],
         prev: history[1] || {},
         history,
+        pgn: game.pgn(),
       });
     })
     .map((b) => b.content)

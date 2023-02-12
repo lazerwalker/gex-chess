@@ -51,6 +51,7 @@ export default function (props: Props) {
     setPossibleMoveSquares([]);
 
     console.log(generateBark(game));
+    console.log(game.pgn());
 
     const playerType = props[game.turn()];
     if (playerType === "ai") {
