@@ -1,11 +1,11 @@
 import { Chess } from "chess.js";
+import { sample } from "lodash";
 
 interface Bark {
   // Verbose history, reversed so 0 is most recent
   fn: string; //(move: Move, prev: Move, history: Move[]) => boolean;
-  pgn?: string;
 
-  content: string;
+  content: string[];
 }
 
 // *unhinged laughter*
@@ -21,37 +21,43 @@ export default function generateBark(game: Chess) {
   }
 
   const history = [...game.history({ verbose: true })].reverse();
-  const possibleBarks = barks.filter((b) => {
-    const editedString = b.fn
-      .replace(/move/g, "this.move")
-      .replace(/prev/g, "this.prev")
-      .replace(/history/g, "this.history");
-    return wrappedEval(editedString, {
-      move: history[0],
-      prev: history[1] || {},
-      history,
-    });
-  });
+  const possibleBarks = barks
+    .filter((b) => {
+      const editedString = b.fn
+        .replace(/move/g, "this.move")
+        .replace(/prev/g, "this.prev")
+        .replace(/history/g, "this.history");
+      return wrappedEval(editedString, {
+        move: history[0],
+        prev: history[1] || {},
+        history,
+      });
+    })
+    .map((b) => b.content)
+    .flat();
 
-  if (possibleBarks.length > 0) return possibleBarks[0].content;
+  console.log(possibleBarks);
+  if (possibleBarks.length > 0) return sample(possibleBarks);
 }
 
 const barks: Bark[] = [];
 
 import rawBarks from "bundle-text:./barks.txt";
 const lines = rawBarks.split("\n");
-for (let i = 0; i < lines.length; i += 3) {
-  if (
-    !lines[i] ||
-    !lines[i + 1] ||
-    lines[i].length === 0 ||
-    lines[i + 1].length === 0
-  )
-    continue;
-  const bark = {
-    fn: lines[i],
-    content: lines[i + 1],
-  };
+let currentBark: Bark | undefined;
 
-  barks.push(bark);
+for (let i = 0; i < lines.length; i++) {
+  if (lines[i].length > 0 && lines[i][0] !== "-") {
+    if (currentBark) {
+      barks.push(currentBark);
+    }
+
+    currentBark = {
+      fn: lines[i],
+      content: [],
+    };
+  } else if (lines[i].length > 0 && lines[i][0] === "-") {
+    if (!currentBark) console.log("SYNTAX ERROR in file");
+    currentBark?.content.push(lines[i].substring(2));
+  }
 }
