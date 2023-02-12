@@ -1,7 +1,7 @@
 import * as React from "react";
 import { createRoot } from "react-dom/client";
 
-import App from "./components/Demo";
+import App from "./components/App";
 
 // Attempt to prevent scrolling
 window.addEventListener("scroll", (e) => {

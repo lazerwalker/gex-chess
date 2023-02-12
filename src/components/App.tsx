@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import PlayableChessBoard from "./GameView";
 
-class Demo extends Component {
+class App extends Component {
   render() {
     return (
       <div>
@@ -14,7 +14,7 @@ class Demo extends Component {
   }
 }
 
-export default Demo;
+export default App;
 
 const boardsContainer = {
   display: "flex",
