@@ -11,3 +11,6 @@ move.to === "a1" && move.piece === "k"
 
 pgn === "1. e4 c5"
 - Never go in against a Sicilian when death is on the line!
+
+pgn === "1. e4 f6 2. Ke2 Nc6 3. Kf3"
+- Hey, man, I dunno what you're smokin', but can you get me a hookup?

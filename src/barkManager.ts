@@ -49,6 +49,7 @@ const lines = rawBarks.split("\n");
 let currentBark: Bark | undefined;
 
 for (let i = 0; i < lines.length; i++) {
+  console.log("Line: ", lines[i]);
   if (lines[i].length > 0 && lines[i][0] !== "-") {
     if (currentBark) {
       barks.push(currentBark);
@@ -63,3 +64,8 @@ for (let i = 0; i < lines.length; i++) {
     currentBark?.content.push(lines[i].substring(2));
   }
 }
+if (currentBark) {
+  barks.push(currentBark);
+}
+
+console.log(barks);
