@@ -1,7 +1,10 @@
 import React, { CSSProperties, useEffect, useState } from "react";
 import { Chess, Move, Square } from "chess.js";
 
-import Chessboard from "chessboardjsx";
+import WhitePiecesSheet from "../../libraries/pixelchess_v1.2/WhitePieces-Sheet.png";
+import BlackPiecesSheet from "../../libraries/pixelchess_v1.2/BlackPieces-Sheet.png";
+
+import Chessboard, { Piece } from "chessboardjsx";
 import ChessEngine, { Engine } from "../engine";
 import generateBark from "../barkManager";
 
@@ -11,6 +14,23 @@ interface Props {
   w: PlayerType;
   b: PlayerType;
 }
+
+type PieceImage = { src: string; alt: string; offset: number; height: number };
+
+const pieces: { [p in Piece]: PieceImage } = {
+  bP: { src: BlackPiecesSheet, alt: "Black Pawn", offset: 0, height: 16 },
+  bN: { src: BlackPiecesSheet, alt: "Black Knight", offset: 1, height: 20 },
+  bR: { src: BlackPiecesSheet, alt: "Black Rook", offset: 2, height: 19 },
+  bB: { src: BlackPiecesSheet, alt: "Black Bishop", offset: 3, height: 21 },
+  bQ: { src: BlackPiecesSheet, alt: "Black Queen", offset: 4, height: 24 },
+  bK: { src: BlackPiecesSheet, alt: "Black King", offset: 5, height: 27 },
+  wP: { src: WhitePiecesSheet, alt: "White Pawn", offset: 0, height: 16 },
+  wN: { src: WhitePiecesSheet, alt: "White Knight", offset: 1, height: 20 },
+  wR: { src: WhitePiecesSheet, alt: "White Rook", offset: 2, height: 19 },
+  wB: { src: WhitePiecesSheet, alt: "White Bishop", offset: 3, height: 21 },
+  wQ: { src: WhitePiecesSheet, alt: "White Queen", offset: 4, height: 24 },
+  wK: { src: WhitePiecesSheet, alt: "White King", offset: 5, height: 27 },
+};
 
 export default function (props: Props) {
   const [engine, setEngine] = useState<Engine>();
@@ -130,7 +150,6 @@ export default function (props: Props) {
         return;
       }
 
-      // TODO: Un-hardcode
       const existingPiece = game.get(square);
       if (existingPiece?.color === game.turn()) {
         setPieceSquare(square);
@@ -162,9 +181,9 @@ export default function (props: Props) {
   const squareStyles = () => {
     const styles: { [square in Square]?: CSSProperties } = {};
 
-    const normalHighlight = { backgroundColor: "rgba(255, 255, 0, 0.4)" };
+    const normalHighlight = { backgroundColor: "#F9A974" };
     const possibleHighlight = {
-      background: "radial-gradient(circle, #fffc00 36%, transparent 40%)",
+      background: "radial-gradient(circle, #F9A974 36%, transparent 40%)",
       borderRadius: "50%",
     };
 
@@ -198,10 +217,38 @@ export default function (props: Props) {
       onSquareClick={onSquareClick}
       boardStyle={{
         borderRadius: "5px",
-        boxShadow: `0 5px 15px rgba(0, 0, 0, 0.5)`,
+        // boxShadow: `0 5px 15px rgba(0, 0, 0, 0.5)`,
+        // transform: "rotateX(60deg) rotateY(0deg) rotateZ(-10deg)",
+      }}
+      lightSquareStyle={{
+        backgroundColor: "#FFF6D3",
+      }}
+      darkSquareStyle={{
+        backgroundColor: "#7C3F58",
       }}
       squareStyles={squareStyles()}
       dropSquareStyle={dropSquareStyle}
+      pieces={objectMap(pieces, (p: PieceImage) => {
+        return ({ squareWidth, isDragging }) => (
+          <div
+            style={{
+              width: "16px",
+              height: p.height,
+              imageRendering: "pixelated",
+              position: "relative",
+              backgroundImage: `url("${p.src}")`,
+              backgroundPosition: `${-p.offset * 16}px ${p.height}px`,
+              transform: `scale(2)`,
+              transformOrigin: "bottom center",
+              top: `${32 - p.height - 3}px`,
+            }}
+            // alt={p.alt}
+          />
+        );
+      })}
     />
   );
 }
+
+const objectMap = (obj, fn) =>
+  Object.fromEntries(Object.entries(obj).map(([k, v], i) => [k, fn(v, k, i)]));
