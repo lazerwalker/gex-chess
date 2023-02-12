@@ -118,6 +118,11 @@ export default function (props: Props) {
   };
 
   const onSquareClick = (square: Square) => {
+    if (props[game.turn()] !== "human") {
+      console.log("Clicking on the AI turn");
+      return;
+    }
+
     if (pieceSquare) {
       if (pieceSquare === square) {
         setPieceSquare(undefined);
@@ -127,7 +132,7 @@ export default function (props: Props) {
 
       // TODO: Un-hardcode
       const existingPiece = game.get(square);
-      if (existingPiece?.color === "w") {
+      if (existingPiece?.color === game.turn()) {
         setPieceSquare(square);
         highlightPossibleMoves(square, true);
         return;
