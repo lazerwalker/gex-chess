@@ -50,7 +50,12 @@ export default function (props: Props) {
     setPieceSquare(undefined);
     setPossibleMoveSquares([]);
 
-    console.log(generateBark(game));
+    const bark = generateBark(game);
+    console.log(bark);
+
+    let utterance = new SpeechSynthesisUtterance(bark);
+    speechSynthesis.speak(utterance);
+
     console.log(game.pgn());
 
     const playerType = props[game.turn()];
