@@ -49,8 +49,13 @@ const lines = rawBarks.split("\n");
 let currentBark: Bark | undefined;
 
 for (let i = 0; i < lines.length; i++) {
-  console.log("Line: ", lines[i]);
-  if (lines[i].length > 0 && lines[i][0] !== "-") {
+  console.log("Line: ", lines[i], lines[i].length);
+  if (lines[i][0] === "#" || lines[i].length === 0) continue;
+
+  if (lines[i][0] === "-") {
+    if (!currentBark) console.log("SYNTAX ERROR in file");
+    currentBark?.content.push(lines[i].substring(2));
+  } else {
     if (currentBark) {
       barks.push(currentBark);
     }
@@ -59,9 +64,6 @@ for (let i = 0; i < lines.length; i++) {
       fn: lines[i],
       content: [],
     };
-  } else if (lines[i].length > 0 && lines[i][0] === "-") {
-    if (!currentBark) console.log("SYNTAX ERROR in file");
-    currentBark?.content.push(lines[i].substring(2));
   }
 }
 if (currentBark) {
