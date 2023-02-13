@@ -1,0 +1,6 @@
+{
+  "appId": "com.lazerwalker.gexchess",
+  "appName": "Gex Chess",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}

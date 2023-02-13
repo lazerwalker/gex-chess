@@ -9,6 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@capacitor/android": "^4.6.3",
+    "@capacitor/core": "^4.6.3",
+    "@capacitor/ios": "^4.6.3",
     "chess.js": "^1.0.0-beta.3",
     "chessboardjsx": "^2.4.7",
     "immer": "^9.0.19",
@@ -19,6 +22,7 @@
     "stockfish": "^15.0.0"
   },
   "devDependencies": {
+    "@capacitor/cli": "^4.6.3",
     "@parcel/transformer-inline-string": "^2.8.3",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.10",

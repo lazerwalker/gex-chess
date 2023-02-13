@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Gex Chess</string>
+    <string name="title_activity_main">Gex Chess</string>
+    <string name="package_name">com.lazerwalker.gexchess</string>
+    <string name="custom_url_scheme">com.lazerwalker.gexchess</string>
+</resources>
