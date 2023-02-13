@@ -2,9 +2,9 @@
   "name": "gex-chess",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "start": "parcel index.html"
+    "start": "parcel index.html",
+    "build": "cp stockfish.js dist; parcel build index.html"
   },
   "author": "",
   "license": "ISC",
