@@ -1,10 +1,11 @@
-import React, { CSSProperties, useEffect, useState } from "react";
+import React, { CSSProperties, useEffect, useState, useContext } from "react";
 import { Chess, Move, Square } from "chess.js";
+import Chessboard, { Piece } from "chessboardjsx";
 
 import WhitePiecesSheet from "../../libraries/pixelchess_v1.2/WhitePieces-Sheet.png";
 import BlackPiecesSheet from "../../libraries/pixelchess_v1.2/BlackPieces-Sheet.png";
 
-import Chessboard, { Piece } from "chessboardjsx";
+import { DispatchContext } from "./App";
 import ChessEngine, { Engine } from "../engine";
 import generateBark from "../barkManager";
 
@@ -33,6 +34,8 @@ const pieces: { [p in Piece]: PieceImage } = {
 };
 
 export default function (props: Props) {
+  const dispatch = useContext(DispatchContext);
+
   const [engine, setEngine] = useState<Engine>();
   const [game, setGame] = useState(new Chess());
   const [fen, setFen] = useState("start");
@@ -71,6 +74,7 @@ export default function (props: Props) {
     setPossibleMoveSquares([]);
 
     const bark = generateBark(game);
+    dispatch({ type: "set_player_bark", value: bark });
     console.log(bark);
 
     let utterance = new SpeechSynthesisUtterance(bark);

@@ -1,24 +1,31 @@
-import React, { Component } from "react";
+import React, { createContext, Dispatch, StrictMode, useReducer } from "react";
+import reducer, { State, Action, defaultState } from "../reducer";
 
 import PlayableChessBoard from "./GameView";
 import OpponentView from "./OpponentView";
 import PlayerView from "./PlayerView";
 
-class App extends Component {
-  render() {
-    return (
-      <div>
-        <div style={boardsContainer}>
-          <OpponentView />
-          <PlayableChessBoard w="human" b="human" />
-          <PlayerView />
-        </div>
-      </div>
-    );
-  }
-}
+export const DispatchContext = createContext<Dispatch<Action>>(null);
 
-export default App;
+export default function () {
+  const [state, dispatch]: [State, Dispatch<Action>] = useReducer(
+    reducer,
+    defaultState
+  );
+  return (
+    <StrictMode>
+      <DispatchContext.Provider value={dispatch}>
+        <div>
+          <div style={boardsContainer}>
+            <OpponentView bark={state.opponentBark} />
+            <PlayableChessBoard w="human" b="ai" />
+            <PlayerView bark={state.playerBark} />
+          </div>
+        </div>
+      </DispatchContext.Provider>
+    </StrictMode>
+  );
+}
 
 const boardsContainer = {
   width: "320px",

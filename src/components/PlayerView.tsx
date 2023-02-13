@@ -2,7 +2,7 @@ import React from "react";
 
 import Gex from "../../libraries/gex.png";
 
-export default function () {
+export default function (props: { bark?: string }) {
   return (
     <div
       style={{
@@ -27,7 +27,7 @@ export default function () {
       <div
         style={{
           boxSizing: "border-box",
-          color: "#7C3F58",
+          color: "#7C3F58", //00B002
           fontFamily: "'BirdSeed', sans-serif",
           paddingRight: "10px",
           paddingTop: "30px",
@@ -37,7 +37,7 @@ export default function () {
           display: "inline-block",
         }}
       >
-        Never go in against a Sicilian when death is on the line!
+        {props.bark}
       </div>
     </div>
   );

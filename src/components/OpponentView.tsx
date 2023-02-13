@@ -2,7 +2,7 @@ import React from "react";
 
 import Lady from "../../libraries/pixel-ladies-free/003.png";
 
-export default function () {
+export default function (props: { bark?: string }) {
   return (
     <div
       style={{
@@ -36,7 +36,7 @@ export default function () {
           display: "inline-block",
         }}
       >
-        You bore me... I was expecting an actual adversary today.
+        {props.bark}
       </div>
     </div>
   );

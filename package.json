@@ -11,6 +11,7 @@
   "dependencies": {
     "chess.js": "^1.0.0-beta.3",
     "chessboardjsx": "^2.4.7",
+    "immer": "^9.0.19",
     "lodash": "^4.17.21",
     "parcel": "^2.8.3",
     "react": "^18.2.0",
