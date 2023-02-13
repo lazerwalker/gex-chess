@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "@capacitor/cli": "^4.6.3",
+    "@parcel/packager-raw-url": "^2.8.3",
     "@parcel/transformer-inline-string": "^2.8.3",
     "@parcel/transformer-webmanifest": "^2.8.3",
     "@types/react": "^18.0.28",
