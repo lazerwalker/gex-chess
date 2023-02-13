@@ -1,6 +1,6 @@
 import React from "react";
 
-import Lady from "../../libraries/pixel-ladies-free/003.png";
+import Gex from "../../libraries/gex.png";
 
 export default function () {
   return (
@@ -13,14 +13,14 @@ export default function () {
     >
       <div
         style={{
-          backgroundImage: `url("${Lady}")`,
-          boxSizing: "border-box",
+          backgroundImage: `url("${Gex}")`,
           // border: "2px solid #7C3F58",
+          boxSizing: "border-box",
           imageRendering: "pixelated",
           width: "120px",
           height: "120px",
           backgroundSize: "contain",
-          float: "left",
+          float: "right",
           display: "inline-block",
         }}
       />
@@ -29,14 +29,15 @@ export default function () {
           boxSizing: "border-box",
           color: "#7C3F58",
           fontFamily: "'BirdSeed', sans-serif",
-          paddingLeft: "5px",
-          paddingTop: "10px",
+          paddingRight: "10px",
+          paddingTop: "30px",
           width: "200px",
-          float: "left",
+          textAlign: "right",
+          float: "right",
           display: "inline-block",
         }}
       >
-        You bore me... I was expecting an actual adversary today.
+        Never go in against a Sicilian when death is on the line!
       </div>
     </div>
   );

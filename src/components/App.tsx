@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import PlayableChessBoard from "./GameView";
 import OpponentView from "./OpponentView";
+import PlayerView from "./PlayerView";
 
 class App extends Component {
   render() {
@@ -10,6 +11,7 @@ class App extends Component {
         <div style={boardsContainer}>
           <OpponentView />
           <PlayableChessBoard w="human" b="human" />
+          <PlayerView />
         </div>
       </div>
     );
