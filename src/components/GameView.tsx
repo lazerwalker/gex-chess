@@ -134,11 +134,10 @@ export default function (props: Props) {
 
   // central squares get diff dropSquareStyles
   const onDragOverSquare = (square) => {
-    setDropSquareStyle(
-      square === "e4" || square === "d4" || square === "e5" || square === "d5"
-        ? { backgroundColor: "cornFlowerBlue" }
-        : { boxShadow: "inset 0 0 1px 4px rgb(255, 255, 0)" }
-    );
+    const style = possibleMoveSquares?.includes(square) // CHECK if move is valid
+      ? { backgroundColor: "#F9A974" }
+      : {};
+    setDropSquareStyle(style);
   };
 
   const onSquareClick = (square: Square) => {
@@ -185,10 +184,11 @@ export default function (props: Props) {
   const squareStyles = () => {
     const styles: { [square in Square]?: CSSProperties } = {};
 
-    const normalHighlight = { backgroundColor: "#F9A974" };
+    const normalHighlight = { backgroundColor: "#EB6A6F" };
     const possibleHighlight = {
-      background: "radial-gradient(circle, #F9A974 36%, transparent 40%)",
-      borderRadius: "50%",
+      background: "radial-gradient(circle, #F9A974 50%, transparent 40%)",
+      borderRadius: "90%",
+      cursor: "pointer",
     };
 
     if (lastMoveSquares) {
