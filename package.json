@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "start": "parcel index.html",
-    "build": "cp stockfish.js dist; parcel build index.html"
+    "build": "rsync stockfish.js ./dist; parcel build index.html"
   },
   "author": "",
   "license": "ISC",
