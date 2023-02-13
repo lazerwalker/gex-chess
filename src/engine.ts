@@ -10,9 +10,10 @@ export interface Engine {
 export default async function (): Promise<Engine> {
   // If we just use `new Worker(url)`, Parcel complains we need to pass in a URL object
   // If we actually Parcel-ify it, it fails to compile Stockfish because of the ndoe.js paths that are never hit
-  // This silly workaround works, sigh.
+  // This silly workaround works, but means we can't use Parcel's nice module resolution
+  // TODO: This won't scale to an offline mobile app
   const floop = Worker;
-  const engine = new floop("../stockfish.js");
+  const engine = new floop("https://lazerwalker.com/gex-chess/stockfish.js");
 
   engine.postMessage("uci");
 
