@@ -1,8 +1,11 @@
 name: Web Deploy
 
+permissions:
+  contents: write
+
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
@@ -10,11 +13,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      
+
       - name: Setup Node.js environment
         uses: actions/setup-node@v3
-        
-      - name: Build 
+
+      - name: Build
         run: |
           npm install
           npm run build
