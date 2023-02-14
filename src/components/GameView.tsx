@@ -1,13 +1,11 @@
 import React, { CSSProperties, useEffect, useState, useContext } from "react";
-import { Chess, Move, Square, Piece } from "chess.js";
+import { Chess, Move, Square } from "chess.js";
 import { Chessboard } from "react-chessboard";
-
-import WhitePiecesSheet from "../../libraries/pixelchess_v1.2/WhitePieces-Sheet.png";
-import BlackPiecesSheet from "../../libraries/pixelchess_v1.2/BlackPieces-Sheet.png";
 
 import { DispatchContext } from "./App";
 import ChessEngine, { Engine } from "../engine";
 import { generateEnemyBark, generateGexBark } from "../barkManager";
+import { customPieces } from "./PieceView";
 
 type PlayerType = "human" | "ai";
 
@@ -15,23 +13,6 @@ interface Props {
   w: PlayerType;
   b: PlayerType;
 }
-
-type PieceImage = { src: string; alt: string; offset: number; height: number };
-
-const pieces: { [p: string]: PieceImage } = {
-  bP: { src: BlackPiecesSheet, alt: "Black Pawn", offset: 0, height: 16 },
-  bN: { src: BlackPiecesSheet, alt: "Black Knight", offset: 1, height: 20 },
-  bR: { src: BlackPiecesSheet, alt: "Black Rook", offset: 2, height: 19 },
-  bB: { src: BlackPiecesSheet, alt: "Black Bishop", offset: 3, height: 21 },
-  bQ: { src: BlackPiecesSheet, alt: "Black Queen", offset: 4, height: 24 },
-  bK: { src: BlackPiecesSheet, alt: "Black King", offset: 5, height: 27 },
-  wP: { src: WhitePiecesSheet, alt: "White Pawn", offset: 0, height: 16 },
-  wN: { src: WhitePiecesSheet, alt: "White Knight", offset: 1, height: 20 },
-  wR: { src: WhitePiecesSheet, alt: "White Rook", offset: 2, height: 19 },
-  wB: { src: WhitePiecesSheet, alt: "White Bishop", offset: 3, height: 21 },
-  wQ: { src: WhitePiecesSheet, alt: "White Queen", offset: 4, height: 24 },
-  wK: { src: WhitePiecesSheet, alt: "White King", offset: 5, height: 27 },
-};
 
 export default function (props: Props) {
   const dispatch = useContext(DispatchContext);
@@ -232,27 +213,7 @@ export default function (props: Props) {
       }}
       customSquareStyles={squareStyles()}
       customDropSquareStyle={dropSquareStyle}
-      customPieces={objectMap(pieces, (p: PieceImage) => {
-        return ({ squareWidth, isDragging }) => (
-          <div
-            style={{
-              width: "16px",
-              height: p.height,
-              imageRendering: "pixelated",
-              position: "relative",
-              backgroundImage: `url("${p.src}")`,
-              backgroundPosition: `${-p.offset * 16}px ${p.height}px`,
-              transform: `scale(2)`,
-              transformOrigin: "bottom center",
-              top: `${32 - p.height - 3}px`,
-            }}
-            // alt={p.alt}
-          />
-        );
-      })}
+      customPieces={customPieces()}
     />
   );
 }
-
-const objectMap = (obj, fn) =>
-  Object.fromEntries(Object.entries(obj).map(([k, v], i) => [k, fn(v, k, i)]));
