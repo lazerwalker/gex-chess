@@ -19,6 +19,7 @@ export function generateGexBark(game: Chess) {
 }
 
 export function generateEnemyBark(game: Chess) {
+  console.log("Generating enemy bark");
   return generateBark(enemyBarks, game);
 }
 
@@ -52,7 +53,6 @@ function generateBark(barks: Bark[], game: Chess) {
     .map((b) => b.content)
     .flat();
 
-  console.log(possibleBarks);
   if (possibleBarks.length > 0) return sample(possibleBarks);
 }
 
@@ -63,7 +63,6 @@ function generateBarks(barkFile: string) {
   let currentBark: Bark | undefined;
 
   for (let i = 0; i < lines.length; i++) {
-    console.log("Line: ", lines[i], lines[i].length);
     if (lines[i][0] === "#" || lines[i].length === 0) continue;
 
     if (lines[i][0] === "-") {

@@ -17,7 +17,7 @@ export default function () {
       <DispatchContext.Provider value={dispatch}>
         <div>
           <div style={boardsContainer}>
-            <OpponentView bark={state.opponentBark} />
+            <OpponentView bark={state.enemyBark} />
             <PlayableChessBoard w="human" b="ai" />
             <PlayerView bark={state.playerBark} />
           </div>

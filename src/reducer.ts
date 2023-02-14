@@ -3,14 +3,14 @@ import { Reducer } from "react";
 
 export interface State {
   readonly playerBark?: string;
-  readonly opponentBark?: string;
+  readonly enemyBark?: string;
 }
 
 export const defaultState: State = {};
 
 export type Action =
   | { type: "set_player_bark"; value: string }
-  | { type: "set_opponent_bark"; value: string };
+  | { type: "set_enemy_bark"; value: string };
 
 function throwBadAction(a: never): never;
 function throwBadAction(a: Action) {
@@ -28,8 +28,8 @@ const reducer: Reducer<State, Action> = (
         draft.playerBark = action.value;
         break;
       }
-      case "set_opponent_bark": {
-        draft.opponentBark = action.value;
+      case "set_enemy_bark": {
+        draft.enemyBark = action.value;
         break;
       }
       default: {
