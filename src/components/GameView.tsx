@@ -1,6 +1,6 @@
 import React, { CSSProperties, useEffect, useState, useContext } from "react";
-import { Chess, Move, Square } from "chess.js";
-import Chessboard, { Piece } from "chessboardjsx";
+import { Chess, Move, Square, Piece } from "chess.js";
+import { Chessboard } from "react-chessboard";
 
 import WhitePiecesSheet from "../../libraries/pixelchess_v1.2/WhitePieces-Sheet.png";
 import BlackPiecesSheet from "../../libraries/pixelchess_v1.2/BlackPieces-Sheet.png";
@@ -18,7 +18,7 @@ interface Props {
 
 type PieceImage = { src: string; alt: string; offset: number; height: number };
 
-const pieces: { [p in Piece]: PieceImage } = {
+const pieces: { [p: string]: PieceImage } = {
   bP: { src: BlackPiecesSheet, alt: "Black Pawn", offset: 0, height: 16 },
   bN: { src: BlackPiecesSheet, alt: "Black Knight", offset: 1, height: 20 },
   bR: { src: BlackPiecesSheet, alt: "Black Rook", offset: 2, height: 19 },
@@ -88,15 +88,17 @@ export default function (props: Props) {
     }
   };
 
-  const onDrop = ({ sourceSquare, targetSquare }) => {
+  const onDrop = (sourceSquare: Square, targetSquare: Square): boolean => {
     try {
       makeMove({
         from: sourceSquare,
         to: targetSquare,
         promotion: "q", // always promote to a queen for example simplicity
       });
+      return true;
     } catch (e) {
       console.log("Could not make drop move", sourceSquare, targetSquare, e);
+      return false;
     }
   };
 
@@ -208,27 +210,29 @@ export default function (props: Props) {
   return (
     <Chessboard
       id="game"
-      width={320}
       position={fen}
-      onDrop={onDrop}
+      onPieceDrop={onDrop}
       onMouseOverSquare={onMouseOverSquare}
       onMouseOutSquare={onMouseOutSquare}
       onDragOverSquare={onDragOverSquare}
       onSquareClick={onSquareClick}
-      boardStyle={{
-        borderRadius: "5px",
-        // boxShadow: `0 5px 15px rgba(0, 0, 0, 0.5)`,
-        // transform: "rotateX(60deg) rotateY(0deg) rotateZ(-10deg)",
-      }}
-      lightSquareStyle={{
+      snapToCursor={false} // TODO: Would like this to be true, but needs sorting out the center of the images
+      customBoardStyle={
+        {
+          // borderRadius: "5px",
+          // boxShadow: `0 5px 15px rgba(0, 0, 0, 0.5)`,
+          // transform: "rotateX(60deg) rotateY(0deg) rotateZ(-10deg)",
+        }
+      }
+      customLightSquareStyle={{
         backgroundColor: "#FFF6D3",
       }}
-      darkSquareStyle={{
+      customDarkSquareStyle={{
         backgroundColor: "#7C3F58",
       }}
-      squareStyles={squareStyles()}
-      dropSquareStyle={dropSquareStyle}
-      pieces={objectMap(pieces, (p: PieceImage) => {
+      customSquareStyles={squareStyles()}
+      customDropSquareStyle={dropSquareStyle}
+      customPieces={objectMap(pieces, (p: PieceImage) => {
         return ({ squareWidth, isDragging }) => (
           <div
             style={{

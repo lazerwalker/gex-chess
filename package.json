@@ -13,11 +13,11 @@
     "@capacitor/core": "^4.6.3",
     "@capacitor/ios": "^4.6.3",
     "chess.js": "^1.0.0-beta.3",
-    "chessboardjsx": "^2.4.7",
     "immer": "^9.0.19",
     "lodash": "^4.17.21",
     "parcel": "^2.8.3",
     "react": "^18.2.0",
+    "react-chessboard": "^2.0.8",
     "react-dom": "^18.2.0",
     "stockfish": "^15.0.0"
   },
