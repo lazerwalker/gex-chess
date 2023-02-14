@@ -13,7 +13,7 @@ export default async function (): Promise<Engine> {
   // This silly workaround works, but means we can't use Parcel's nice module resolution
   // TODO: This won't scale to an offline mobile app
   const floop = Worker;
-  const engine = new floop("https://lazerwalker.com/gex-chess/stockfish.js");
+  const engine = new floop("./stockfish.js");
 
   engine.postMessage("uci");
 
