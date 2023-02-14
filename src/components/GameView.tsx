@@ -7,7 +7,7 @@ import BlackPiecesSheet from "../../libraries/pixelchess_v1.2/BlackPieces-Sheet.
 
 import { DispatchContext } from "./App";
 import ChessEngine, { Engine } from "../engine";
-import generateBark from "../barkManager";
+import { generateGexBark } from "../barkManager";
 
 type PlayerType = "human" | "ai";
 
@@ -73,7 +73,7 @@ export default function (props: Props) {
     setPieceSquare(undefined);
     setPossibleMoveSquares([]);
 
-    const bark = generateBark(game);
+    const bark = generateGexBark(game);
     dispatch({ type: "set_player_bark", value: bark });
     console.log(bark);
 

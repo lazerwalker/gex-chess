@@ -1,0 +1,5 @@
+game.history.length > 0
+- You bore me. I thought I'd be facing a real opponent...
+- Hmm.
+- I simply move the pieces where they need to go.
+- Do you even know how to play this game?
