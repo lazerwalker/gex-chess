@@ -20,13 +20,13 @@ export default function () {
           <div style={boardsContainer}>
             <OpponentView
               bark={state.enemyBark}
-              captured={state.captured["b"]}
+              captured={state.captured["w"]}
               score={state.relativeScore["b"]}
             />
             <PlayableChessBoard w="human" b="ai" />
             <PlayerView
               bark={state.playerBark}
-              captured={state.captured["w"]}
+              captured={state.captured["b"]}
               score={state.relativeScore["w"]}
             />
           </div>

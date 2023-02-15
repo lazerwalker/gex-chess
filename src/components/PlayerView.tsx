@@ -52,7 +52,7 @@ export default function (props: Props) {
       >
         {props.bark}
       </div>
-      <CapturedPiecesView color={"w"} captured={props.captured} />
+      <CapturedPiecesView color={"b"} captured={props.captured} />
       {scoreDiv}
     </div>
   );

@@ -60,7 +60,7 @@ export default function (props: Props) {
           bottom: "0px",
         }}
       >
-        <CapturedPiecesView color={"b"} captured={props.captured} />
+        <CapturedPiecesView color={"w"} captured={props.captured} />
         {scoreDiv}
       </div>
     </div>
