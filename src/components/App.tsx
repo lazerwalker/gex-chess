@@ -1,5 +1,6 @@
 import React, { createContext, Dispatch, StrictMode, useReducer } from "react";
 import reducer, { State, Action, defaultState } from "../reducer";
+import CapturedPiecesView from "./CapturedPiecesView";
 
 import PlayableChessBoard from "./GameView";
 import OpponentView from "./OpponentView";
@@ -17,9 +18,15 @@ export default function () {
       <DispatchContext.Provider value={dispatch}>
         <div>
           <div style={boardsContainer}>
-            <OpponentView bark={state.enemyBark} />
+            <OpponentView
+              bark={state.enemyBark}
+              captured={state.captured["b"]}
+            />
             <PlayableChessBoard w="human" b="ai" />
-            <PlayerView bark={state.playerBark} />
+            <PlayerView
+              bark={state.playerBark}
+              captured={state.captured["w"]}
+            />
           </div>
         </div>
       </DispatchContext.Provider>

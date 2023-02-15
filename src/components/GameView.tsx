@@ -6,6 +6,7 @@ import { DispatchContext } from "./App";
 import ChessEngine, { Engine } from "../engine";
 import { generateEnemyBark, generateGexBark } from "../barkManager";
 import { customPieces } from "./PieceView";
+import { capturedPieces } from "../chessHelpers";
 
 type PlayerType = "human" | "ai";
 
@@ -58,6 +59,10 @@ export default function (props: Props) {
     dispatch({ type: "set_enemy_bark", value: generateEnemyBark(game) });
 
     console.log(game.pgn());
+
+    if (finishedMove.captured) {
+      dispatch({ type: "update_captured_pieces", value: capturedPieces(game) });
+    }
 
     const playerType = props[game.turn()];
     if (playerType === "ai") {

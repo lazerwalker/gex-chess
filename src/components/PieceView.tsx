@@ -1,4 +1,4 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 
 type PieceImage = { src: string; alt: string; offset: number; height: number };
 
@@ -36,32 +36,39 @@ const pieces: { [p in PieceName]: PieceImage } = {
 
 interface Props {
   piece: PieceName;
+  alignTop?: boolean;
 }
 
 export const customPieces = () => {
-  console.log(pieces);
   const result = objectMap(pieces, (p: PieceImage, n: PieceName) => {
-    return () => <PieceView piece={n} />;
+    return () => <PieceView piece={n} alignTop={true} />;
   });
   return result;
 };
 
 function PieceView(props: Props) {
   const p = pieces[props.piece];
-  console.log(props, p);
+
+  const style: CSSProperties = {
+    display: "inline-block",
+    width: "16px",
+    height: p.height,
+    imageRendering: "pixelated",
+    position: "relative",
+    backgroundImage: `url("${p.src}")`,
+    backgroundPosition: `${-p.offset * 16}px ${p.height}px`,
+    transform: `scale(2)`,
+    transformOrigin: "bottom center",
+  };
+  if (props.alignTop) {
+    style.top = `${32 - p.height - 3}px`;
+  } else {
+    style.bottom = "0px";
+  }
+
   return (
     <div
-      style={{
-        width: "16px",
-        height: p.height,
-        imageRendering: "pixelated",
-        position: "relative",
-        backgroundImage: `url("${p.src}")`,
-        backgroundPosition: `${-p.offset * 16}px ${p.height}px`,
-        transform: `scale(2)`,
-        transformOrigin: "bottom center",
-        top: `${32 - p.height - 3}px`,
-      }}
+      style={style}
       // alt={p.alt}
     />
   );

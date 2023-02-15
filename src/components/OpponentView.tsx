@@ -1,14 +1,21 @@
 import React from "react";
 
 import Lady from "../../libraries/pixel-ladies-free/003.png";
+import { PieceCount } from "../chessHelpers";
+import CapturedPiecesView from "./CapturedPiecesView";
 
-export default function (props: { bark?: string }) {
+interface Props {
+  bark?: string;
+  captured: PieceCount;
+}
+
+export default function (props: Props) {
   return (
     <div
       style={{
         marginBottom: "40px",
-        marginTop: "20px",
         height: "120px",
+        position: "relative",
       }}
     >
       <div
@@ -37,6 +44,15 @@ export default function (props: { bark?: string }) {
         }}
       >
         {props.bark}
+      </div>
+      <div
+        style={{
+          position: "absolute",
+          right: "0px",
+          bottom: "0px",
+        }}
+      >
+        <CapturedPiecesView color={"b"} captured={props.captured} />
       </div>
     </div>
   );

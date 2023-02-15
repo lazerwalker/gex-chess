@@ -1,13 +1,19 @@
 import React from "react";
 
 import Gex from "../../libraries/gex.png";
+import { PieceCount } from "../chessHelpers";
+import CapturedPiecesView from "./CapturedPiecesView";
 
-export default function (props: { bark?: string }) {
+interface Props {
+  bark?: string;
+  captured: PieceCount;
+}
+
+export default function (props: Props) {
   return (
     <div
       style={{
         marginBottom: "40px",
-        marginTop: "20px",
         height: "120px",
       }}
     >
@@ -39,6 +45,7 @@ export default function (props: { bark?: string }) {
       >
         {props.bark}
       </div>
+      <CapturedPiecesView color={"w"} captured={props.captured} />
     </div>
   );
 }
