@@ -2,12 +2,14 @@ import { produce } from "immer";
 import { Reducer } from "react";
 import { Piece } from "chess.js";
 
-import { GamePieceCount } from "./chessHelpers";
+import { calculateScores, GamePieceCount } from "./chessHelpers";
 
 export interface State {
   readonly playerBark?: string;
   readonly enemyBark?: string;
+
   readonly captured: GamePieceCount;
+  readonly relativeScore: { b: number; w: number };
 }
 
 export const defaultState: State = {
@@ -27,6 +29,7 @@ export const defaultState: State = {
       p: 0,
     },
   },
+  relativeScore: { w: 0, b: 0 },
 };
 
 export type Action =
@@ -56,6 +59,7 @@ const reducer: Reducer<State, Action> = (
       }
       case "update_captured_pieces": {
         draft.captured = action.value;
+        draft.relativeScore = calculateScores(action.value);
         break;
       }
       default: {

@@ -7,13 +7,21 @@ import CapturedPiecesView from "./CapturedPiecesView";
 interface Props {
   bark?: string;
   captured: PieceCount;
+  score: number;
 }
 
 export default function (props: Props) {
+  let scoreDiv;
+  if (props.score !== 0) {
+    const scoreString = props.score > 0 ? `+${props.score}` : props.score;
+    scoreDiv = <div className="score">{scoreString}</div>;
+  }
+
   return (
     <div
       style={{
         marginBottom: "40px",
+        marginTop: "20px",
         height: "120px",
         position: "relative",
       }}
@@ -53,6 +61,7 @@ export default function (props: Props) {
         }}
       >
         <CapturedPiecesView color={"b"} captured={props.captured} />
+        {scoreDiv}
       </div>
     </div>
   );

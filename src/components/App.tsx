@@ -21,11 +21,13 @@ export default function () {
             <OpponentView
               bark={state.enemyBark}
               captured={state.captured["b"]}
+              score={state.relativeScore["b"]}
             />
             <PlayableChessBoard w="human" b="ai" />
             <PlayerView
               bark={state.playerBark}
               captured={state.captured["w"]}
+              score={state.relativeScore["w"]}
             />
           </div>
         </div>
