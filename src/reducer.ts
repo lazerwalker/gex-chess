@@ -14,17 +14,17 @@ export const defaultState: State = {
   captured: {
     w: {
       q: 0,
-      p: 0,
       r: 0,
-      n: 0,
       b: 0,
+      n: 0,
+      p: 0,
     },
     b: {
       q: 0,
-      p: 0,
       r: 0,
-      n: 0,
       b: 0,
+      n: 0,
+      p: 0,
     },
   },
 };
