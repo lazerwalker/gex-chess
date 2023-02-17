@@ -22,7 +22,7 @@ export default async function (): Promise<Engine> {
     engine.postMessage(message);
 
     // TODO: Chessboardjsx has a much more complex relationship to time
-    engine.postMessage("go movetime 1000");
+    engine.postMessage("go movetime 3000");
   }
 
   function parseBestMove(line) {

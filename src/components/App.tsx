@@ -1,6 +1,7 @@
 import React, { createContext, Dispatch, StrictMode, useReducer } from "react";
 import reducer, { State, Action, defaultState } from "../reducer";
 import CapturedPiecesView from "./CapturedPiecesView";
+import GameOverView from "./GameOverView";
 
 import PlayableChessBoard from "./GameView";
 import OpponentView from "./OpponentView";
