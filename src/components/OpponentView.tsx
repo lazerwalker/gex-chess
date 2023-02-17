@@ -8,11 +8,12 @@ interface Props {
   bark?: string;
   captured: PieceCount;
   score: number;
+  showScore?: boolean;
 }
 
 export default function (props: Props) {
   let scoreDiv;
-  if (props.score !== 0) {
+  if (props.score !== 0 && props.showScore) {
     const scoreString = props.score > 0 ? `+${props.score}` : props.score;
     scoreDiv = <div className="score">{scoreString}</div>;
   }

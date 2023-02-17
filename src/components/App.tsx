@@ -23,6 +23,7 @@ export default function () {
               bark={state.enemyBark}
               captured={state.captured["w"]}
               score={state.relativeScore["b"]}
+              showScore={false}
             />
             <PlayableChessBoard w="human" b="ai" />
             <PlayerView
