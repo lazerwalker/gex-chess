@@ -1,0 +1,259 @@
+.modal { 
+  position:relative; 
+  display:inline-block; 
+  width:200px; 
+  height:200px; 
+  margin:20px; 
+  overflow: hidden;
+
+  border: 2px solid #7C3F58;
+  background: #FFF6D3; 
+  /*background: rgba(0,0,0,1.0);*/
+  color: #7C3F58; 
+  /*transition: background 0.5s ease-in-out;*/
+
+  position: absolute;
+  top: 220px;
+  left: 27vw;
+  width: 290px;
+  z-index: 999;
+}
+
+.modal {
+  text-align: center;
+}
+
+.modal button {
+  background: #FFF6D3; 
+  border: 2px solid #7C3F58;
+  color: #7C3F58;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 2px;
+  font-family: "BirdSeed";
+}
+
+.modal button:hover {
+  background: #F9A974;
+  color: #FFF6D3;
+}
+
+/*.black:hover { background: #333;}*/
+.corner {
+  position: absolute;
+  /*background:red;*/
+  background:none;
+  width:6em;
+  height:6em;
+  font-size:2px;
+  font-size:10px;
+  opacity: 1.0;
+  transition: opacity 0.3s ease-in-out;
+}
+.corner:after {
+  position: absolute;
+  content: '';
+  display: block;
+  width:0.2em;
+  height:0.2em;
+}
+.topleft {
+  top:1em;
+  left:1em; 
+  /* I do not know why, but it's better with this - */
+  -webkit-transform:rotate(360deg); transform:rotate(360deg); 
+}
+.topright {  
+  top:1em; right:1em; -webkit-transform:rotate(90deg); transform:rotate(90deg); 
+}
+.bottomleft { 
+  bottom:1em; left:1em; -webkit-transform:rotate(270deg); transform:rotate(270deg); 
+}
+.bottomright { 
+  bottom:1em; right:1em; -webkit-transform:rotate(180deg); transform:rotate(180deg); 
+}
+
+
+/* Corners
+------------------------------------------------------------ */
+.variant:after {
+  width:0.1em;
+  height:0.1em;
+}
+.corner1:after {
+  /*transition: box-shadow 0.5s ease-in-out;*/
+  box-shadow:
+    4.2em 0em 0 #7C3F58, 4.4em 0em 0 #7C3F58, 4.6em 0em 0 #7C3F58,
+    1.2em 0.2em 0 #7C3F58, 1.4em 0.2em 0 #7C3F58, 1.6em 0.2em 0 #7C3F58, 1.8em 0.2em 0 #7C3F58, 4em 0.2em 0 #7C3F58, 4.8em 0.2em 0 #7C3F58,
+    1em 0.4em 0 #7C3F58, 2em 0.4em 0 #7C3F58, 4em 0.4em 0 #7C3F58, 4.4em 0.4em 0 #7C3F58, 4.8em 0.4em 0 #7C3F58,
+    1em 0.6em 0 #7C3F58, 2em 0.6em 0 #7C3F58, 4.2em 0.6em 0 #7C3F58, 4.8em 0.6em 0 #7C3F58,
+    2em 0.8em 0 #7C3F58, 4.6em 0.8em 0 #7C3F58,
+    0.4em 1em 0 #7C3F58, 0.6em 1em 0 #7C3F58, 0.8em 1em 0 #7C3F58, 1em 1em 0 #7C3F58, 1.2em 1em 0 #7C3F58, 1.4em 1em 0 #7C3F58, 1.6em 1em 0 #7C3F58, 2em 1em 0 #7C3F58, 2.4em 1em 0 #7C3F58, 2.6em 1em 0 #7C3F58, 2.8em 1em 0 #7C3F58, 3em 1em 0 #7C3F58, 3.2em 1em 0 #7C3F58, 3.4em 1em 0 #7C3F58, 3.6em 1em 0 #7C3F58, 3.8em 1em 0 #7C3F58, 4em 1em 0 #7C3F58, 4.2em 1em 0 #7C3F58, 4.4em 1em 0 #7C3F58,
+    0.2em 1.2em 0 #7C3F58, 2.0em 1.2em 0 #7C3F58,
+    0.2em 1.4em 0 #7C3F58, 1.0em 1.4em 0 #7C3F58, 2.0em 1.4em 0 #7C3F58,
+    0.2em 1.6em 0 #7C3F58, 1.0em 1.6em 0 #7C3F58, 2.0em 1.6em 0 #7C3F58,
+    0.2em 1.8em 0 #7C3F58, 1.0em 1.8em 0 #7C3F58, 5.2em 1.8em 0 #7C3F58,
+    0.4em 2.0em 0 #7C3F58, 0.6em 2.0em 0 #7C3F58, 1em 2.0em 0 #7C3F58, 1.4em 2.0em 0 #7C3F58, 1.6em 2.0em 0 #7C3F58, 1.8em 2.0em 0 #7C3F58, 2.0em 2.0em 0 #7C3F58, 2.2em 2.0em 0 #7C3F58, 2.4em 2.0em 0 #7C3F58, 2.6em 2.0em 0 #7C3F58, 2.8em 2.0em 0 #7C3F58, 3em 2.0em 0 #7C3F58, 3.2em 2.0em 0 #7C3F58, 3.4em 2.0em 0 #7C3F58, 3.6em 2.0em 0 #7C3F58, 3.8em 2.0em 0 #7C3F58, 4.0em 2.0em 0 #7C3F58, 4.2em 2.0em 0 #7C3F58, 4.4em 2.0em 0 #7C3F58, 4.6em 2.0em 0 #7C3F58, 4.8em 2.0em 0 #7C3F58, 5.0em 2.0em 0 #7C3F58, 5.4em 2.0em 0 #7C3F58,
+    1.0em 2.2em 0 #7C3F58, 5.2em 2.2em 0 #7C3F58,
+    1.0em 2.4em 0 #7C3F58, 2.0em 2.4em 0 #7C3F58,
+    1.0em 2.6em 0 #7C3F58, 2.0em 2.6em 0 #7C3F58,
+    1.0em 2.8em 0 #7C3F58, 2.0em 2.8em 0 #7C3F58,
+    1.0em 3.0em 0 #7C3F58, 2.0em 3.0em 0 #7C3F58,
+    1.0em 3.2em 0 #7C3F58, 2.0em 3.2em 0 #7C3F58,
+    1.0em 3.4em 0 #7C3F58, 2.0em 3.4em 0 #7C3F58,
+    1.0em 3.6em 0 #7C3F58, 2.0em 3.6em 0 #7C3F58,
+    1.0em 3.8em 0 #7C3F58, 2.0em 3.8em 0 #7C3F58,
+    0.2em 4.0em 0 #7C3F58, 0.4em 4.0em 0 #7C3F58, 1.0em 4.0em 0 #7C3F58, 2.0em 4.0em 0 #7C3F58,
+    0em 4.2em 0 #7C3F58, 0.6em 4.2em 0 #7C3F58, 1.0em 4.2em 0 #7C3F58, 2.0em 4.2em 0 #7C3F58,
+    0em 4.4em 0 #7C3F58, 0.4em 4.4em 0 #7C3F58, 1.0em 4.4em 0 #7C3F58, 2.0em 4.4em 0 #7C3F58,
+    0em 4.6em 0 #7C3F58, 0.8em 4.6em 0 #7C3F58, 2.0em 4.6em 0 #7C3F58,
+    0.2em 4.8em 0 #7C3F58, 0.4em 4.8em 0 #7C3F58, 0.6em 4.8em 0 #7C3F58, 2.0em 4.8em 0 #7C3F58,
+    2.0em 5.0em 0 #7C3F58,
+    1.8em 5.2em 0 #7C3F58, 2.2em 5.2em 0 #7C3F58,
+    2.0em 5.4em 0 #7C3F58;
+}
+.corner2:after {
+  box-shadow:
+    0.2em 0.2em 0 #7C3F58, 0.4em 0.2em 0 #7C3F58, 0.6em 0.2em 0 #7C3F58, 0.8em 0.2em 0 #7C3F58, 1.8em 0.2em 0 #7C3F58, 2.0em 0.2em 0 #7C3F58, 2.2em 0.2em 0 #7C3F58, 3.4em 0.2em 0 #7C3F58, 3.6em 0.2em 0 #7C3F58, 3.8em 0.2em 0 #7C3F58, 4.6em 0.2em #7C3F58, 4.8em 0.2em 0 #7C3F58, 5.0em 0.2em 0 #7C3F58,
+    0.2em 0.4em 0 #7C3F58, 0.8em 0.4em 0 #7C3F58, 1.6em 0.4em 0 #7C3F58, 2.4em 0.4em 0 #7C3F58, 3.2em 0.4em 0 #7C3F58, 4.0em 0.4em 0 #7C3F58, 4.4em 0.4em 0 #7C3F58, 5.2em 0.4em 0 #7C3F58,
+    0.2em 0.6em 0 #7C3F58, 1.6em 0.6em 0 #7C3F58, 3.2em 0.6em 0 #7C3F58, 4.2em 0.6em 0 #7C3F58, 5.2em 0.6em 0 #7C3F58,
+    0.2em 0.8em 0 #7C3F58, 0.4em 0.8em 0 #7C3F58, 0.6em 0.8em 0 #7C3F58, 0.8em 0.8em 0 #7C3F58, 1.0em 0.8em 0 #7C3F58, 1.2em 0.8em 0 #7C3F58, 1.6em 0.8em 0 #7C3F58, 2.0em 0.8em 0 #7C3F58, 2.2em 0.8em 0 #7C3F58, 2.4em 0.8em 0 #7C3F58, 2.6em 0.8em 0 #7C3F58, 2.8em 0.8em 0 #7C3F58, 3.4em 0.8em 0 #7C3F58, 3.6em 0.8em 0 #7C3F58, 4.2em 0.8em 0 #7C3F58, 5.2em 0.8em 0 #7C3F58, 
+    1.6em 1.0em 0 #7C3F58, 3.0em 1.0em 0 #7C3F58, 4.2em 1.0em 0 #7C3F58, 4.8em 1.0em 0 #7C3F58, 5.0em 1.0em 0 #7C3F58, 
+    0.8em 1.2em 0 #7C3F58, 1.6em 1.2em 0 #7C3F58, 2.4em 1.2em 0 #7C3F58, 3.0em 1.2em 0 #7C3F58, 4.2em 1.2em 0 #7C3F58, 
+    0.8em 1.4em 0 #7C3F58, 2.4em 1.4em 0 #7C3F58, 3.0em 1.4em 0 #7C3F58, 4.0em 1.4em 0 #7C3F58, 
+    0.4em 1.6em 0 #7C3F58, 0.8em 1.6em 0 #7C3F58, 1.2em 1.6em 0 #7C3F58, 1.4em 1.6em 0 #7C3F58, 1.6em 1.6em 0 #7C3F58, 1.8em 1.6em 0 #7C3F58, 2.0em 1.6em 0 #7C3F58, 2.4em 1.6em 0 #7C3F58, 2.8em 1.6em 0 #7C3F58, 4.0em 1.6em 0 #7C3F58, 
+    0.2em 1.8em 0 #7C3F58, 0.8em 1.8em 0 #7C3F58, 2.4em 1.8em 0 #7C3F58, 3.8em 1.8em 0 #7C3F58, 
+    0.2em 2.0em 0 #7C3F58, 0.8em 2.0em 0 #7C3F58, 1.6em 2.0em 0 #7C3F58, 2.4em 2.0em 0 #7C3F58, 3.6em 2.0em 0 #7C3F58, 
+    0.2em 2.2em 0 #7C3F58, 1.6em 2.2em 0 #7C3F58, 3.2em 2.2em 0 #7C3F58, 3.4em 2.2em 0 #7C3F58,   
+    0.4em 2.4em 0 #7C3F58, 0.6em 2.4em 0 #7C3F58, 0.8em 2.4em 0 #7C3F58, 1.0em 2.4em 0 #7C3F58, 1.2em 2.4em 0 #7C3F58, 1.6em 2.4em 0 #7C3F58, 2.0em 2.4em 0 #7C3F58, 2.2em 2.4em 0 #7C3F58, 2.4em 2.4em 0 #7C3F58, 2.6em 2.4em 0 #7C3F58, 2.8em 2.4em 0 #7C3F58, 3.0em 2.4em 0 #7C3F58,
+    1.6em 2.6em 0 #7C3F58, 
+    0.8em 2.8em 0 #7C3F58, 1.6em 2.8em 0 #7C3F58, 2.4em 2.8em 0 #7C3F58, 
+    1.0em 3.0em 0 #7C3F58, 1.2em 3.0em 0 #7C3F58, 1.4em 3.0em 0 #7C3F58, 2.4em 3.0em 0 #7C3F58, 
+    0.4em 3.2em 0 #7C3F58, 0.6em 3.2em 0 #7C3F58, 2.2em 3.2em 0 #7C3F58, 
+    0.2em 3.4em 0 #7C3F58, 0.8em 3.4em 0 #7C3F58, 2.2em 3.4em 0 #7C3F58, 
+    0.2em 3.6em 0 #7C3F58, 0.8em 3.6em 0 #7C3F58, 2.0em 3.6em 0 #7C3F58, 
+    0.2em 3.8em 0 #7C3F58, 1.8em 3.8em 0 #7C3F58, 
+    0.4em 4.0em 0 #7C3F58, 1.4em 4.0em 0 #7C3F58, 1.6em 4.0em 0 #7C3F58, 
+    0.6em 4.2em 0 #7C3F58, 0.8em 4.2em 0 #7C3F58, 1.0em 4.2em 0 #7C3F58, 1.2em 4.2em 0 #7C3F58, 
+    0.4em 4.4em 0 #7C3F58, 
+    0.2em 4.6em 0 #7C3F58,
+    0.2em 4.8em 0 #7C3F58, 1.0em 4.8em 0 #7C3F58, 
+    0.2em 5.0em 0 #7C3F58, 1.0em 5.0em 0 #7C3F58, 
+    0.4em 5.2em 0 #7C3F58, 0.6em 5.2em 0 #7C3F58, 0.8em 5.2em 0 #7C3F58;
+}
+.corner3:after {
+    box-shadow:
+    0.2em 0.2em #7C3F58, 0.4em 0.2em #7C3F58, 0.6em 0.2em #7C3F58, 0.8em 0.2em #7C3F58, 1.0em 0.2em #7C3F58, 1.2em 0.2em #7C3F58, 1.4em 0.2em #7C3F58, 2.0em 0.2em #7C3F58, 2.2em 0.2em #7C3F58, 2.4em 0.2em #7C3F58, 2.6em 0.2em #7C3F58, 2.8em 0.2em #7C3F58, 3.0em 0.2em #7C3F58, 3.2em 0.2em #7C3F58, 3.4em 0.2em #7C3F58, 3.6em 0.2em #7C3F58, 3.8em 0.2em #7C3F58, 4.0em 0.2em #7C3F58, 4.2em 0.2em #7C3F58, 4.4em 0.2em #7C3F58, 4.6em 0.2em #7C3F58, 4.8em 0.2em #7C3F58, 5.0em 0.2em #7C3F58, 5.2em 0.2em #7C3F58, 5.4em 0.2em #7C3F58, 5.8em 0.2em #7C3F58, 
+    0.2em 0.4em #7C3F58, 1.4em 0.4em #7C3F58, 2.0em 0.4em #7C3F58, 
+    0.2em 0.6em #7C3F58, 1.4em 0.6em #7C3F58, 
+    0.2em 0.8em #7C3F58, 0.8em 0.8em #7C3F58, 1.0em 0.8em #7C3F58, 1.4em 0.8em #7C3F58, 1.8em 0.8em #7C3F58, 2.0em 0.8em #7C3F58, 2.2em 0.8em #7C3F58, 2.4em 0.8em #7C3F58, 2.6em 0.8em #7C3F58, 2.8em 0.8em #7C3F58, 3.0em 0.8em #7C3F58, 3.2em 0.8em #7C3F58, 3.4em 0.8em #7C3F58, 3.6em 0.8em #7C3F58, 3.8em 0.8em #7C3F58, 4.0em 0.8em #7C3F58, 4.2em 0.8em #7C3F58, 4.6em 0.8em #7C3F58, 
+    0.2em 1.0em #7C3F58, 0.8em 1.0em #7C3F58, 1.4em 1.0em #7C3F58, 3.6em 1.0em #7C3F58, 3.8em 1.0em #7C3F58, 
+    0.2em 1.2em #7C3F58, 0.8em 1.2em #7C3F58, 2.0em 1.2em #7C3F58, 3.2em 1.2em #7C3F58, 3.4em 1.2em #7C3F58, 
+    0.2em 1.4em #7C3F58, 0.4em 1.4em #7C3F58, 0.8em 1.4em #7C3F58, 1.2em 1.4em #7C3F58, 1.4em 1.4em #7C3F58, 1.6em 1.4em #7C3F58, 2.0em 1.4em #7C3F58, 2.4em 1.4em #7C3F58, 2.6em 1.4em #7C3F58, 2.8em 1.4em #7C3F58, 3.0em 1.4em #7C3F58, 
+    0.8em 1.6em #7C3F58, 2.0em 1.6em #7C3F58, 
+    1.4em 1.8em #7C3F58, 2.0em 1.8em #7C3F58, 
+    0.2em 2.0em #7C3F58, 0.4em 2.0em #7C3F58, 0.6em 2.0em #7C3F58, 0.8em 2.0em #7C3F58, 1.0em 2.0em #7C3F58, 1.4em 2.0em #7C3F58, 1.8em 2.0em #7C3F58, 2.0em 2.0em #7C3F58, 
+    0.2em 2.2em #7C3F58, 1.4em 2.2em #7C3F58, 
+    0.2em 2.4em #7C3F58, 0.8em 2.4em #7C3F58, 1.4em 2.4em #7C3F58, 
+    0.2em 2.6em #7C3F58, 0.8em 2.6em #7C3F58, 1.4em 2.6em #7C3F58, 
+    0.2em 2.8em #7C3F58, 0.8em 2.8em #7C3F58, 1.4em 2.8em #7C3F58, 
+    0.2em 3.0em #7C3F58, 0.8em 3.0em #7C3F58, 1.4em 3.0em #7C3F58, 
+    0.2em 3.2em #7C3F58, 0.8em 3.2em #7C3F58, 1.2em 3.2em #7C3F58, 
+    0.2em 3.4em #7C3F58, 0.8em 3.4em #7C3F58, 1.2em 3.4em #7C3F58, 
+    0.2em 3.6em #7C3F58, 0.8em 3.6em #7C3F58, 1.0em 3.6em #7C3F58, 
+    0.2em 3.8em #7C3F58, 0.8em 3.8em #7C3F58, 1.0em 3.8em #7C3F58, 
+    0.2em 4.0em #7C3F58, 0.8em 4.0em #7C3F58, 
+    0.2em 4.2em #7C3F58, 0.8em 4.2em #7C3F58, 
+    0.2em 4.4em #7C3F58,  
+    0.2em 4.6em #7C3F58, 0.8em 4.6em #7C3F58, 
+    0.2em 4.8em #7C3F58,
+    0.2em 5.0em #7C3F58, 
+    0.2em 5.2em #7C3F58, 
+    0.2em 5.4em #7C3F58, 
+    0.2em 5.8em #7C3F58;
+}
+.corner4:after {
+  box-shadow:
+    2.8em 0em #7C3F58, 3.0em 0em #7C3F58, 3.2em 0em #7C3F58, 
+    1.2em 0.2em #7C3F58, 1.4em 0.2em #7C3F58, 2.6em 0.2em #7C3F58, 3.4em 0.2em #7C3F58, 
+    1.0em 0.4em #7C3F58, 1.6em 0.4em #7C3F58, 2.4em 0.4em #7C3F58, 3.0em 0.4em #7C3F58, 3.6em 0.4em #7C3F58, 5.2em 0.4em #7C3F58, 5.6em 0.4em #7C3F58,
+    1.0em 0.6em #7C3F58, 1.6em 0.6em #7C3F58, 2.4em 0.6em #7C3F58, 2.8em 0.6em #7C3F58, 3.2em 0.6em #7C3F58, 3.6em 0.6em #7C3F58, 4.8em 0.6em #7C3F58, 
+    1.6em 0.8em #7C3F58, 3.0em 0.8em #7C3F58, 3.6em 0.8em #7C3F58, 4.4em 0.8em #7C3F58,  
+    0.4em 1.0em #7C3F58, 0.6em 1.0em #7C3F58, 0.8em 1.0em #7C3F58, 1.0em 1.0em #7C3F58, 1.2em 1.0em #7C3F58, 1.6em 1.0em #7C3F58, 2.0em 1.0em #7C3F58, 2.2em 1.0em #7C3F58, 2.4em 1.0em #7C3F58, 2.6em 1.0em #7C3F58, 2.8em 1.0em #7C3F58, 3.2em 1.0em #7C3F58, 3.4em 1.0em #7C3F58, 4.2em 1.0em #7C3F58, 
+    0.2em 1.2em #7C3F58, 1.6em 1.2em #7C3F58, 4.0em 1.2em #7C3F58, 
+    0.2em 1.4em #7C3F58, 1.0em 1.4em #7C3F58, 2.6em 1.4em #7C3F58, 3.8em 1.4em #7C3F58, 
+    0.4em 1.6em #7C3F58, 0.6em 1.6em #7C3F58, 1.0em 1.6em #7C3F58, 1.4em 1.6em #7C3F58, 1.6em 1.6em #7C3F58, 1.8em 1.6em #7C3F58, 2.0em 1.6em #7C3F58, 2.8em 1.6em #7C3F58, 3.0em 1.6em #7C3F58, 3.2em 1.6em #7C3F58, 3.4em 1.6em #7C3F58, 3.6em 1.6em #7C3F58, 
+    1.0em 1.8em #7C3F58, 2.2em 1.8em #7C3F58, 
+    1.0em 2.0em #7C3F58, 1.6em 2.0em #7C3F58, 2.2em 2.0em #7C3F58, 
+    1.0em 2.2em #7C3F58, 1.8em 2.2em #7C3F58, 2.0em 2.2em #7C3F58, 2.6em 2.2em #7C3F58,
+    0.4em 2.4em #7C3F58, 0.6em 2.4em #7C3F58, 1.0em 2.4em #7C3F58, 2.4em 2.4em #7C3F58, 
+    0.2em 2.6em #7C3F58, 1.0em 2.6em #7C3F58, 1.4em 2.6em #7C3F58, 2.2em 2.6em #7C3F58, 2.6em 2.6em #7C3F58, 
+    0em 2.8em #7C3F58, 0.6em 2.8em #7C3F58, 1.0em 2.8em #7C3F58, 1.6em 2.8em #7C3F58, 
+    0em 3.0em #7C3F58, 0.4em 3.0em #7C3F58, 0.8em 3.0em #7C3F58, 1.6em 3.0em #7C3F58, 
+    0em 3.2em #7C3F58, 0.6em 3.2em #7C3F58, 1.0em 3.2em #7C3F58, 1.6em 3.2em #7C3F58, 
+    0.2em 3.4em #7C3F58, 1.0em 3.4em #7C3F58, 1.6em 3.4em #7C3F58, 
+    0.4em 3.6em #7C3F58, 0.6em 3.6em #7C3F58, 0.8em 3.6em #7C3F58, 1.6em 3.6em #7C3F58, 
+    1.4em 3.8em #7C3F58, 
+    1.2em 4.0em #7C3F58, 
+    1.0em 4.2em #7C3F58, 
+    0.8em 4.4em #7C3F58, 
+    0.6em 4.8em #7C3F58, 
+    0.4em 5.2em #7C3F58, 
+    0.4em 5.6em #7C3F58;
+}
+.corner5:after { 
+  box-shadow:
+    0.2em 0em #7C3F58, 0.4em 0em #7C3F58, 0.6em 0em #7C3F58, 4.0em 0em #7C3F58, 4.2em 0em #7C3F58, 4.4em 0em #7C3F58, 4.6em 0em #7C3F58, 4.8em 0em #7C3F58, 5.2em 0em #7C3F58, 
+    0em 0.2em #7C3F58, 0.8em 0.2em #7C3F58, 2.0em 0.2em #7C3F58, 2.2em 0.2em #7C3F58, 2.4em 0.2em #7C3F58, 2.6em 0.2em #7C3F58, 4.0em 0.2em #7C3F58, 
+    0em 0.4em #7C3F58, 0.8em 0.4em #7C3F58, 2.0em 0.4em #7C3F58, 2.8em 0.4em #7C3F58, 4.0em 0.4em #7C3F58, 
+    0em 0.6em #7C3F58, 2.0em 0.6em #7C3F58, 2.8em 0.6em #7C3F58, 3.4em 0.6em #7C3F58, 3.6em 0.6em #7C3F58, 4.0em 0.6em #7C3F58, 4.4em 0.6em #7C3F58, 
+    0.2em 0.8em #7C3F58, 0.4em 0.8em #7C3F58, 0.6em 0.8em #7C3F58, 0.8em 0.8em #7C3F58, 1.0em 0.8em #7C3F58, 1.2em 0.8em #7C3F58, 1.4em 0.8em #7C3F58, 1.6em 0.8em #7C3F58, 2.0em 0.8em #7C3F58, 2.4em 0.8em #7C3F58, 2.6em 0.8em #7C3F58, 3.4em 0.8em #7C3F58, 4.0em 0.8em #7C3F58, 4.6em 0.8em #7C3F58, 
+    2.0em 1.0em #7C3F58, 3.4em 1.0em #7C3F58, 4.0em 1.0em #7C3F58, 4.6em 1.0em #7C3F58, 
+    0.8em 1.2em #7C3F58, 3.4em 1.2em #7C3F58, 4.2em 1.2em #7C3F58, 4.4em 1.2em #7C3F58, 
+    0.8em 1.4em #7C3F58, 1.4em 1.4em #7C3F58, 1.6em 1.4em #7C3F58, 1.8em 1.4em #7C3F58, 2.0em 1.4em #7C3F58, 2.2em 1.4em #7C3F58, 2.4em 1.4em #7C3F58, 2.6em 1.4em #7C3F58, 3.4em 1.4em #7C3F58, 
+    0.8em 1.6em #7C3F58, 1.4em 1.6em #7C3F58, 2.6em 1.6em #7C3F58, 3.4em 1.6em #7C3F58, 
+    0.8em 1.8em #7C3F58, 2.0em 1.8em #7C3F58, 3.4em 1.8em #7C3F58, 
+    0.2em 2.0em #7C3F58, 0.4em 2.0em #7C3F58, 0.8em 2.0em #7C3F58, 1.2em 2.0em #7C3F58, 1.4em 2.0em #7C3F58, 1.6em 2.0em #7C3F58, 2.0em 2.0em #7C3F58, 2.4em 2.0em #7C3F58, 2.6em 2.0em #7C3F58, 2.8em 2.0em #7C3F58, 3.0em 2.0em #7C3F58, 3.2em 2.0em #7C3F58, 
+    0.2em 2.2em #7C3F58, 0.8em 2.2em #7C3F58, 2.0em 2.2em #7C3F58, 
+    0.2em 2.4em #7C3F58, 0.8em 2.4em #7C3F58, 1.4em 2.4em #7C3F58, 2.6em 2.4em #7C3F58,    
+    0.2em 2.6em #7C3F58, 0.8em 2.6em #7C3F58, 1.4em 2.6em #7C3F58, 1.6em 2.6em #7C3F58, 1.8em 2.6em #7C3F58, 2.0em 2.6em #7C3F58, 2.2em 2.6em #7C3F58, 2.6em 2.6em #7C3F58, 3.0em 2.6em #7C3F58, 3.2em 2.6em #7C3F58, 
+    0.4em 2.8em #7C3F58, 0.6em 2.8em #7C3F58, 2.6em 2.8em #7C3F58, 3.4em 2.8em #7C3F58, 
+    2.0em 3.0em #7C3F58, 2.6em 3.0em #7C3F58, 3.4em 3.0em #7C3F58, 
+    2.0em 3.2em #7C3F58, 2.6em 3.2em #7C3F58, 3.4em 3.2em #7C3F58, 
+    0.6em 3.4em #7C3F58, 0.8em 3.4em #7C3F58, 1.0em 3.4em #7C3F58, 1.2em 3.4em #7C3F58, 1.4em 3.4em #7C3F58, 1.6em 3.4em #7C3F58, 1.8em 3.4em #7C3F58, 2.8em 3.4em #7C3F58, 3.0em 3.4em #7C3F58, 3.2em 3.4em #7C3F58, 3.4em 3.4em #7C3F58, 
+    0.6em 3.6em #7C3F58, 3.6em 3.6em #7C3F58, 
+    0.6em 3.8em #7C3F58, 
+    0em 4.0em #7C3F58, 0.2em 4.0em #7C3F58, 0.6em 4.0em #7C3F58, 1.0em 4.0em #7C3F58, 
+    0em 4.2em #7C3F58, 0.6em 4.2em #7C3F58, 1.2em 4.2em #7C3F58, 
+    0em 4.4em #7C3F58, 0.6em 4.4em #7C3F58, 1.2em 4.4em #7C3F58, 
+    0em 4.6em #7C3F58, 0.8em 4.6em #7C3F58, 1.0em 4.6em #7C3F58, 
+    0em 4.8em #7C3F58,
+    0em 5.2em #7C3F58;
+}
+.corner6:after {
+  box-shadow:
+    0.6em 0em #7C3F58, 0.8em 0em #7C3F58, 1.4em 0em #7C3F58, 1.6em 0em #7C3F58, 2.4em 0em #7C3F58, 2.6em 0em #7C3F58, 
+    0.6em 0.2em #7C3F58, 1.0em 0.2em #7C3F58, 1.2em 0.2em #7C3F58, 1.6em 0.2em #7C3F58, 2.2em 0.2em #7C3F58, 2.8em 0.2em #7C3F58, 4.2em 0.2em #7C3F58, 
+    0.8em 0.4em #7C3F58, 1.6em 0.4em #7C3F58, 2.4em 0.4em #7C3F58, 2.8em 0.4em #7C3F58, 3.2em 0.4em #7C3F58, 3.4em 0.4em #7C3F58, 3.6em 0.4em #7C3F58, 4.0em 0.4em #7C3F58, 4.4em 0.4em #7C3F58, 4.8em 0.4em #7C3F58, 5.2em 0.4em #7C3F58, 
+    0em 0.6em #7C3F58, 0.2em 0.6em #7C3F58, 1.0em 0.6em #7C3F58, 1.6em 0.6em #7C3F58, 2.8em 0.6em #7C3F58, 4.2em 0.6em #7C3F58,
+    0em 0.8em #7C3F58, 0.4em 0.8em #7C3F58, 1.6em 0.8em #7C3F58, 2.6em 0.8em #7C3F58,
+    0.2em 1.0em #7C3F58, 0.6em 1.0em #7C3F58, 0.8em 1.0em #7C3F58, 1.0em 1.0em #7C3F58, 1.2em 1.0em #7C3F58, 1.6em 1.0em #7C3F58, 2.0em 1.0em #7C3F58, 2.2em 1.0em #7C3F58, 2.4em 1.0em #7C3F58, 
+    0.2em 1.2em #7C3F58, 1.6em 1.2em #7C3F58, 
+    0em 1.4em #7C3F58, 1.0em 1.4em #7C3F58, 1.8em 1.4em #7C3F58, 
+    0em 1.6em #7C3F58, 0.2em 1.6em #7C3F58, 0.4em 1.6em #7C3F58, 0.6em 1.6em #7C3F58, 1.0em 1.6em #7C3F58, 2.0em 1.6em #7C3F58, 
+    1.0em 1.8em #7C3F58, 1.4em 1.8em #7C3F58, 2.0em 1.8em #7C3F58, 
+    1.0em 2.0em #7C3F58, 1.6em 2.0em #7C3F58, 1.8em 2.0em #7C3F58, 2.0em 2.0em #7C3F58, 
+    0.2em 2.2em #7C3F58, 1.0em 2.2em #7C3F58, 2.2em 2.2em #7C3F58, 2.6em 2.2em #7C3F58, 
+    0em 2.4em #7C3F58, 0.4em 2.4em #7C3F58, 1.0em 2.4em #7C3F58, 
+    0em 2.6em #7C3F58, 0.8em 2.6em #7C3F58, 2.2em 2.6em #7C3F58, 
+    0.2em 2.8em #7C3F58, 0.4em 2.8em #7C3F58, 0.6em 2.8em #7C3F58, 
+    0.4em 3.2em #7C3F58, 
+    0.4em 3.4em #7C3F58, 
+    0.4em 3.6em #7C3F58, 
+    0.4em 4.0em #7C3F58, 
+    0.2em 4.2em #7C3F58, 0.6em 4.2em #7C3F58, 
+    0.4em 4.4em #7C3F58, 
+    0.4em 4.8em #7C3F58, 
+    0.4em 5.2em #7C3F58;
+}

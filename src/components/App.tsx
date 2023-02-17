@@ -30,6 +30,12 @@ export default function () {
               captured={state.captured["b"]}
               score={state.relativeScore["w"]}
             />
+            {state.gameOver ? (
+              <GameOverView
+                endGameState={state.endGameState!}
+                reason={state.winReason!}
+              />
+            ) : null}
           </div>
         </div>
       </DispatchContext.Provider>

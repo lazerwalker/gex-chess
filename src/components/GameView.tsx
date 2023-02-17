@@ -7,6 +7,7 @@ import ChessEngine, { Engine } from "../engine";
 import { generateEnemyBark, generateGexBark } from "../barkManager";
 import { customPieces } from "./PieceView";
 import { capturedPieces } from "../chessHelpers";
+import { EndGameState, WinReason } from "../reducer";
 
 type PlayerType = "human" | "ai";
 
@@ -47,8 +48,11 @@ export default function (props: Props) {
 
   const makeMove = (move: Move | Partial<Move>) => {
     const finishedMove = game.move(move as Move);
+    // Instant checkmate
+    // game.load("rnb1kbnr/pppp1ppp/8/4p3/5PPq/8/PPPPP2P/RNBQKBNR w KQkq - 1 3");
 
     setFen(game.fen());
+
     setHistory(game.history({ verbose: true }));
     setLastMoveSquares([finishedMove.from, finishedMove.to]);
 
@@ -59,6 +63,27 @@ export default function (props: Props) {
     dispatch({ type: "set_enemy_bark", value: generateEnemyBark(game) });
 
     console.log(game.pgn());
+
+    if (game.isGameOver()) {
+      let reason: WinReason = "checkmate";
+      let endGameState: EndGameState = "draw";
+      if (game.isCheckmate()) {
+        reason = "checkmate";
+        if (props[game.turn()] === "human") {
+          endGameState = "loss";
+        } else {
+          endGameState = "win";
+        }
+      } else if (game.isDraw()) {
+        reason = "draw";
+      } else if (game.isStalemate()) {
+        reason = "stalemate";
+      } else if (game.isThreefoldRepetition()) {
+        reason = "threefold";
+      }
+
+      dispatch({ type: "end_game", value: { endGameState, reason } });
+    }
 
     if (finishedMove.captured) {
       dispatch({ type: "update_captured_pieces", value: capturedPieces(game) });
