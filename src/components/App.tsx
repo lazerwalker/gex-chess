@@ -1,11 +1,8 @@
 import React, { createContext, Dispatch, StrictMode, useReducer } from "react";
-import reducer, { State, Action, defaultState } from "../reducer";
-import CapturedPiecesView from "./CapturedPiecesView";
-import GameOverView from "./GameOverView";
-
-import PlayableChessBoard from "./GameView";
-import OpponentView from "./OpponentView";
-import PlayerView from "./PlayerView";
+import reducer, { State, Action, Screen, defaultState } from "../reducer";
+import GameView from "./GameView";
+import OpponentSelectView from "./OpponentSelectView";
+import TitleView from "./TitleView";
 
 export const DispatchContext = createContext<Dispatch<Action>>(null);
 
@@ -14,39 +11,23 @@ export default function () {
     reducer,
     defaultState
   );
+
   return (
     <StrictMode>
       <DispatchContext.Provider value={dispatch}>
-        <div>
-          <div style={boardsContainer}>
-            <OpponentView
-              bark={state.enemyBark}
-              captured={state.captured["w"]}
-              score={state.relativeScore["b"]}
-              showScore={false}
-            />
-            <PlayableChessBoard w="human" b="ai" />
-            <PlayerView
-              bark={state.playerBark}
-              captured={state.captured["b"]}
-              score={state.relativeScore["w"]}
-            />
-            {state.gameOver ? (
-              <GameOverView
-                endGameState={state.endGameState!}
-                reason={state.winReason!}
-              />
-            ) : null}
-          </div>
-        </div>
+        {state.screen === Screen.Title ? <TitleView /> : null}
+        {state.screen === Screen.OpponentSelect ? <OpponentSelectView /> : null}
+        {state.screen === Screen.Game ? (
+          <GameView
+            captured={state.captured}
+            playerBark={state.playerBark}
+            enemyBark={state.enemyBark}
+            gameOver={state.gameOver}
+            endGameState={state.endGameState}
+            relativeScore={state.relativeScore}
+          />
+        ) : null}
       </DispatchContext.Provider>
     </StrictMode>
   );
 }
-
-const boardsContainer = {
-  width: "320px",
-  margin: "auto",
-  marginTop: 30,
-  marginBottom: 50,
-};

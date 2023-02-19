@@ -10,13 +10,21 @@ export interface State {
   readonly captured: GamePieceCount;
   readonly relativeScore: { b: number; w: number };
 
-  readonly gameOver?: boolean;
+  readonly gameOver: boolean;
   readonly endGameState?: EndGameState;
   readonly winReason?: WinReason;
+
+  readonly screen: Screen;
 }
 
 export type WinReason = "checkmate" | "stalemate" | "draw" | "threefold";
 export type EndGameState = "win" | "loss" | "draw";
+
+export enum Screen {
+  Title = "title",
+  OpponentSelect = "opponent_select",
+  Game = "game",
+}
 
 export const defaultState: State = {
   captured: {
@@ -36,12 +44,15 @@ export const defaultState: State = {
     },
   },
   relativeScore: { w: 0, b: 0 },
+  screen: Screen.Title,
+  gameOver: false,
 };
 
 export type Action =
   | { type: "set_player_bark"; value: string }
   | { type: "set_enemy_bark"; value: string }
   | { type: "update_captured_pieces"; value: GamePieceCount }
+  | { type: "change_screen"; value: Screen }
   | {
       type: "end_game";
       value: { endGameState: EndGameState; reason: WinReason };
@@ -76,6 +87,10 @@ const reducer: Reducer<State, Action> = (
         draft.gameOver = true;
         draft.endGameState = action.value.endGameState;
         draft.winReason = action.value.reason;
+        break;
+      }
+      case "change_screen": {
+        draft.screen = action.value;
         break;
       }
       default: {
