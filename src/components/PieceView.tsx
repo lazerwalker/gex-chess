@@ -68,7 +68,13 @@ function PieceView(props: Props) {
   }
 
   return (
-    <div>
+    <div
+      style={{
+        display: "inline-block",
+        width: "16px",
+        position: "relative",
+      }}
+    >
       <div
         style={style}
         // alt={p.alt}
