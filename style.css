@@ -5,9 +5,53 @@ body {
   font-family: 'BirdSeed'
 }
 
+#root {
+  width: 320px;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+
+#title {
+  margin-left: 20px;
+}
+
+#title .gex-plays {
+  /* font-family: 'Curse'; */
+  font-size: 26px;
+  transform: rotate(-10deg);
+  width: 45px;
+}
+
+#title h2 {
+  text-align: center;
+  font-family: "Curse";
+  font-weight: bold;
+}
+
+#title h1 {
+  font-family: 'BubbleTime';
+  text-align: center;
+}
+
+#title h2 span {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
 @font-face {
   font-family: 'BirdSeed';
   src: url('/libraries/birdseed.ttf') format('truetype')
+}
+
+@font-face {
+  font-family: 'BubbleTime';
+  src: url('/libraries/bubble-time.ttf') format('truetype')
+}
+
+@font-face {
+  font-family: 'Curse';
+  src: url('/libraries/curse.ttf') format('truetype')
 }
 
 [data-square] div div {

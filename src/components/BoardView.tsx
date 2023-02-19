@@ -36,7 +36,8 @@ export default function (props: Props) {
 
   useEffect(() => {
     if (!engine) return;
-    engine.addEventListener("bestmove", (move) => {
+    engine.addEventListener("bestmove", (move: Move, score: number) => {
+      console.log("Score after move", score);
       makeMove(move);
     });
 

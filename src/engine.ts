@@ -1,3 +1,5 @@
+import { current } from "immer";
+
 type ChessEvent = "bestmove" | "score";
 
 export interface Engine {
@@ -40,6 +42,14 @@ export default async function (): Promise<Engine> {
     }
   }
 
+  let currentScore: number = 0;
+  function parseScore(line) {
+    var match = line.match(/cp (\-?[0-9]*)/);
+    if (match) {
+      currentScore = match[1];
+    }
+  }
+
   function newGame() {
     engine.postMessage("ucinewgame");
   }
@@ -47,9 +57,10 @@ export default async function (): Promise<Engine> {
   engine.onmessage = function (event) {
     var line = event.data;
     // console.log("ENGINE: " + line);
+    parseScore(line);
     const bestMove = parseBestMove(line);
     if (bestMove) {
-      handlers["bestmove"].forEach((fn) => fn(bestMove));
+      handlers["bestmove"].forEach((fn) => fn(bestMove, currentScore));
     }
   };
 

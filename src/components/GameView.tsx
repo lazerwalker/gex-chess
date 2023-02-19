@@ -21,7 +21,7 @@ interface Props {
 export default function (props: Props) {
   return (
     <div>
-      <div style={boardsContainer}>
+      <div>
         <OpponentView
           bark={props.enemyBark}
           captured={props.captured["w"]}
@@ -44,10 +44,3 @@ export default function (props: Props) {
     </div>
   );
 }
-
-const boardsContainer = {
-  width: "320px",
-  margin: "auto",
-  marginTop: 30,
-  marginBottom: 50,
-};
