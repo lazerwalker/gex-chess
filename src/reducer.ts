@@ -1,6 +1,5 @@
 import { produce } from "immer";
 import { Reducer } from "react";
-import { Piece } from "chess.js";
 
 import { calculateScores, GamePieceCount } from "./chessHelpers";
 

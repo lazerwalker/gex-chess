@@ -59,8 +59,12 @@ export default function (props: Props) {
     setPieceSquare(undefined);
     setPossibleMoveSquares([]);
 
-    dispatch({ type: "set_player_bark", value: generateGexBark(game) });
-    dispatch({ type: "set_enemy_bark", value: generateEnemyBark(game) });
+    // If it's the AI's turn, Gex just moved and should bark (and vice versa)
+    if (props[game.turn()] === "ai") {
+      dispatch({ type: "set_player_bark", value: generateGexBark(game) });
+    } else {
+      dispatch({ type: "set_enemy_bark", value: generateEnemyBark(game) });
+    }
 
     console.log(game.pgn());
 
