@@ -59,6 +59,7 @@ function PieceView(props: Props) {
     backgroundPosition: `${-p.offset * 16}px ${p.height}px`,
     transform: `scale(2)`,
     transformOrigin: "bottom center",
+    pointerEvents: "none",
   };
   if (props.alignTop) {
     style.top = `${32 - p.height - 3}px`;
@@ -67,10 +68,12 @@ function PieceView(props: Props) {
   }
 
   return (
-    <div
-      style={style}
-      // alt={p.alt}
-    />
+    <div>
+      <div
+        style={style}
+        // alt={p.alt}
+      />
+    </div>
   );
 }
 
