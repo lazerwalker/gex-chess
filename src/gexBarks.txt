@@ -9,9 +9,13 @@ pgn === "1. e4 e5"
 move.to === "a1" && move.piece === "k"
 - Knight to A1! You can lead a horse to steak sauce, but you can't make them drink!
 
+# Sicilian Defense
 pgn === "1. e4 c5"
+weight: 10000
 - Never go in against a Sicilian when death is on the line!
 
 # Bongcloud
 pgn === "1. e4 f6 2. Ke2 Nc6 3. Kf3"
+weight: 10000
 - Hey, man, I dunno what you're smokin', but can you get me a hookup?
+

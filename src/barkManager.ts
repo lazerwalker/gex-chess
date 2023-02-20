@@ -12,6 +12,11 @@ interface Bark {
   fn: string; //(move: Move, prev: Move, history: Move[], pgn: string) => boolean;
 
   content: string[];
+
+  // Weight for weighted RNG
+  // A weight of 10 = 10x more likely to show up than a weight of 1
+  // Set to 1 by default
+  weight: number;
 }
 
 export function generateGexBark(game: Chess) {
@@ -36,7 +41,8 @@ function generateBark(barks: Bark[], game: Chess) {
   }
 
   const history = [...game.history({ verbose: true })].reverse();
-  const possibleBarks = barks
+  const possibleBarks: string[] = [];
+  barks
     .filter((b) => {
       const editedString = b.fn
         .replace(/move/g, "this.move")
@@ -50,8 +56,11 @@ function generateBark(barks: Bark[], game: Chess) {
         pgn: game.pgn(),
       });
     })
-    .map((b) => b.content)
-    .flat();
+    .forEach((b) => {
+      for (let i = 0; i < b.weight; i++) {
+        b.content.forEach((c) => possibleBarks.push(c));
+      }
+    });
 
   if (possibleBarks.length > 0) return sample(possibleBarks);
 }
@@ -68,6 +77,11 @@ function generateBarks(barkFile: string) {
     if (lines[i][0] === "-") {
       if (!currentBark) console.log("SYNTAX ERROR in file");
       currentBark?.content.push(lines[i].substring(2));
+    } else if (lines[i].startsWith("weight: ")) {
+      const weight = parseInt(lines[i].substring(8));
+      if (currentBark) {
+        currentBark.weight = weight;
+      }
     } else {
       if (currentBark) {
         barks.push(currentBark);
@@ -76,6 +90,7 @@ function generateBarks(barkFile: string) {
       currentBark = {
         fn: lines[i],
         content: [],
+        weight: 1,
       };
     }
   }
