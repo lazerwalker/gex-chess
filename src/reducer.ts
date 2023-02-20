@@ -1,3 +1,4 @@
+import { Color } from "chess.js";
 import { produce } from "immer";
 import { Reducer } from "react";
 
@@ -15,6 +16,8 @@ export interface State {
   readonly winReason?: WinReason;
 
   readonly screen: Screen;
+
+  readonly playerColor?: Color;
 }
 
 export type WinReason = "checkmate" | "stalemate" | "draw" | "threefold";
@@ -23,6 +26,7 @@ export type EndGameState = "win" | "loss" | "draw";
 export enum Screen {
   Title = "title",
   OpponentSelect = "opponent_select",
+  ColorSelect = "color_select",
   Game = "game",
 }
 
@@ -53,6 +57,7 @@ export type Action =
   | { type: "set_enemy_bark"; value: string }
   | { type: "update_captured_pieces"; value: GamePieceCount }
   | { type: "change_screen"; value: Screen }
+  | { type: "select_color"; value: Color }
   | {
       type: "end_game";
       value: { endGameState: EndGameState; reason: WinReason };
@@ -91,6 +96,11 @@ const reducer: Reducer<State, Action> = (
       }
       case "change_screen": {
         draft.screen = action.value;
+        break;
+      }
+      case "select_color": {
+        draft.playerColor = action.value;
+        draft.screen = Screen.Game;
         break;
       }
       default: {

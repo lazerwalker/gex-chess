@@ -9,6 +9,7 @@ interface Props {
 }
 
 export default function (props: Props) {
+  console.log(props.captured);
   const pieces = Object.keys(props.captured).map((key) => {
     const count = props.captured[key];
     return [...Array(count).keys()].map((i) => (

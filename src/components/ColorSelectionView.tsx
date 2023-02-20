@@ -7,20 +7,25 @@ import PieceView from "./PieceView";
 export default function () {
   const dispatch = useContext(DispatchContext);
 
-  const start = () => {
-    dispatch({ type: "change_screen", value: Screen.ColorSelect });
+  const clickWhite = () => {
+    dispatch({ type: "select_color", value: "w" });
+  };
+
+  const clickBlack = () => {
+    dispatch({ type: "select_color", value: "b" });
   };
 
   return (
     <div id="title">
-      <p className="gex-plays">Gex Plays</p>
-      <h1>Tokidoki Chess Club</h1>
-      <h2>
+      <h1>Select Side</h1>
+      <button onClick={clickWhite}>
         <PieceView piece="wP" />
-        <span>A Chess Dating Sim</span>
+        White
+      </button>
+      <button onClick={clickBlack}>
         <PieceView piece="bP" />
-      </h2>
-      <button onClick={start}>It's Tail Time</button>
+        Black
+      </button>
     </div>
   );
 }

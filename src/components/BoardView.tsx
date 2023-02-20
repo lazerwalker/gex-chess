@@ -249,6 +249,7 @@ export default function (props: Props) {
       customSquareStyles={squareStyles()}
       customDropSquareStyle={dropSquareStyle}
       customPieces={customPieces()}
+      boardOrientation={props.w === "human" ? "white" : "black"}
     />
   );
 }
