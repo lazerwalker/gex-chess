@@ -23,7 +23,7 @@
   text-align: center;
 }
 
-.modal button {
+button {
   background: #FFF6D3; 
   border: 2px solid #7C3F58;
   color: #7C3F58;
@@ -34,7 +34,7 @@
   font-family: "BirdSeed";
 }
 
-.modal button:hover {
+button:hover {
   background: #F9A974;
   color: #FFF6D3;
 }

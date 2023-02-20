@@ -20,7 +20,9 @@ export default function () {
         <span>A Chess Dating Sim</span>
         <PieceView piece="bP" />
       </h2>
-      <button onClick={start}>It's Tail Time</button>
+      <center>
+        <button onClick={start}>It's Tail Time</button>
+      </center>
     </div>
   );
 }

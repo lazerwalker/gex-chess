@@ -17,15 +17,15 @@ export default function () {
 
   return (
     <div id="title">
-      <h1>Select Side</h1>
-      <button onClick={clickWhite}>
-        <PieceView piece="wP" />
-        White
-      </button>
-      <button onClick={clickBlack}>
-        <PieceView piece="bP" />
-        Black
-      </button>
+      <h1>Select A Side</h1>
+      <center>
+        <button onClick={clickWhite} style={{ marginRight: "5px" }}>
+          White
+        </button>
+        <button onClick={clickBlack} style={{ marginLeft: "5px" }}>
+          Black
+        </button>
+      </center>
     </div>
   );
 }
