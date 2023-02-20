@@ -57,3 +57,8 @@ body {
 [data-square] div div {
   font-family: 'BirdSeed' !important;
 }
+
+a, a:visited {
+  color: #7C3F58;
+  text-decoration-style: dotted;
+}
