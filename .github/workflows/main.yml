@@ -20,6 +20,7 @@ jobs:
       - name: Build
         run: |
           npm install
+          rsync -r libraries dist
           npm run build
 
       - name: Deploy
