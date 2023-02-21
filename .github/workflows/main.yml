@@ -33,7 +33,6 @@ jobs:
         with:
           butlerApiKey: ${{secrets.BUTLER_API_KEY}}
           gameData: ./dist
-          itchUsername: ${{env.ITCH_USERNAME}}
-          itchGameId: ${{ env.ITCH_GAME_ID }}
+          itchUsername: ${{secrets.ITCH_USERNAME}}
+          itchGameId: ${{ secrets.ITCH_GAME_ID }}
           buildChannel: win
-          buildNumber: ${{ needs.version.outputs.version_hash }}
