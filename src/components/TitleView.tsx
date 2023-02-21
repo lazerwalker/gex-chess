@@ -1,17 +1,24 @@
 import React, { useContext } from "react";
 
 import { DispatchContext } from "./App";
-import { Screen } from "../reducer";
 import PieceView from "./PieceView";
+import { Howl } from "howler";
 
 export default function () {
   const dispatch = useContext(DispatchContext);
 
+  const clickSound = new Howl({
+    src: ["./libraries/interface-bleeps/Click_01.wav"],
+  });
+
   const clickWhite = () => {
+    clickSound.play();
     dispatch({ type: "select_color", value: "w" });
   };
 
   const clickBlack = () => {
+    clickSound.play();
+
     dispatch({ type: "select_color", value: "b" });
   };
 

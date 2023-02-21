@@ -1,6 +1,7 @@
 import React, { CSSProperties, useEffect, useState, useContext } from "react";
 import { Chess, Move, Square } from "chess.js";
 import { Chessboard } from "react-chessboard";
+import { Howl } from "howler";
 
 import { DispatchContext } from "./App";
 import ChessEngine, { Engine } from "../engine";
@@ -30,6 +31,14 @@ export default function (props: Props) {
   const [lastMoveSquares, setLastMoveSquares] = useState<[Square, Square]>();
   const [possibleMoveSquares, setPossibleMoveSquares] = useState<Square[]>();
 
+  const clickSound = new Howl({
+    src: ["./libraries/interface-bleeps/Click_01.wav"],
+  });
+
+  const captureSound = new Howl({
+    src: ["./libraries/gb-sound-assets/Power-Hit.mp3"],
+  });
+
   useEffect(() => {
     ChessEngine().then((e) => setEngine(e));
   }, []);
@@ -51,6 +60,12 @@ export default function (props: Props) {
     const finishedMove = game.move(move as Move);
     // Instant checkmate
     // game.load("rnb1kbnr/pppp1ppp/8/4p3/5PPq/8/PPPPP2P/RNBQKBNR w KQkq - 1 3");
+
+    if (finishedMove.captured) {
+      captureSound.play();
+    } else {
+      clickSound.play();
+    }
 
     setFen(game.fen());
 
