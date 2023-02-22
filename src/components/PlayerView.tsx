@@ -22,6 +22,7 @@ export default function (props: Props) {
       style={{
         marginBottom: "40px",
         height: "120px",
+        position: "absolute",
       }}
     >
       <div
