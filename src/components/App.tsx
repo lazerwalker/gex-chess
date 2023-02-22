@@ -1,4 +1,12 @@
-import React, { createContext, Dispatch, StrictMode, useReducer } from "react";
+import React, {
+  createContext,
+  Dispatch,
+  StrictMode,
+  useEffect,
+  useReducer,
+} from "react";
+import { Howl } from "howler";
+
 import reducer, { State, Action, Screen, defaultState } from "../reducer";
 import ColorSelectionView from "./ColorSelectionView";
 import GameView from "./GameView";
@@ -12,6 +20,14 @@ export default function () {
     reducer,
     defaultState
   );
+
+  useEffect(() => {
+    if (!state.hasInteracted) return;
+    const music = new Howl({
+      src: ["./libraries/puzzle_game.mp3"],
+    });
+    music.play();
+  }, [state.hasInteracted]);
 
   return (
     <StrictMode>

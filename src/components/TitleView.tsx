@@ -7,16 +7,18 @@ import { Howl } from "howler";
 export default function () {
   const dispatch = useContext(DispatchContext);
 
-  const clickSound = new Howl({
-    src: ["./libraries/interface-bleeps/Click_01.wav"],
-  });
-
   const clickWhite = () => {
+    const clickSound = new Howl({
+      src: ["./libraries/interface-bleeps/Click_01.wav"],
+    });
     clickSound.play();
     dispatch({ type: "select_color", value: "w" });
   };
 
   const clickBlack = () => {
+    const clickSound = new Howl({
+      src: ["./libraries/interface-bleeps/Click_01.wav"],
+    });
     clickSound.play();
 
     dispatch({ type: "select_color", value: "b" });

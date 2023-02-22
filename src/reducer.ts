@@ -18,6 +18,8 @@ export interface State {
   readonly screen: Screen;
 
   readonly playerColor?: Color;
+
+  readonly hasInteracted?: boolean;
 }
 
 export type WinReason = "checkmate" | "stalemate" | "draw" | "threefold";
@@ -99,6 +101,7 @@ const reducer: Reducer<State, Action> = (
         break;
       }
       case "select_color": {
+        draft.hasInteracted = true;
         draft.playerColor = action.value;
         draft.screen = Screen.Game;
         break;
