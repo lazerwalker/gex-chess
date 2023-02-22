@@ -5,16 +5,17 @@ weight: 10
 
 pgn === "1. e4"
 weight: 100
-- Ol' reliable!
+- Pawn to E4, ol' reliable!
 - That's my little king's pawn!
 
 pgn === "1. d4"
 weight: 100
+- Pawn to D4, ol' reliable!
 - Go forth, little queen's pawn!
 
 pgn === "1. e4 e5"
 weight: 10000
-- And a classic response!
+- And a classic response to my king's pawn!
 
 move.to === "a1" && move.piece === "k"
 weight: 100000
@@ -99,7 +100,7 @@ weight: 1000
 - And I recapture back!
 - And we trade!
 
-move.captured && move.piece === "b" && move.captured !== "b"
+move.captured && move.piece === "b" && move.captured === "b"
 weight: 1000
 - A bishop for a bishop!
 - Two clergy enter, one clergy leaves!
