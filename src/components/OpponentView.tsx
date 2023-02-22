@@ -57,7 +57,7 @@ export default function (props: Props) {
       <div
         style={{
           position: "absolute",
-          right: "0px",
+          right: "10px",
           bottom: "0px",
         }}
       >
