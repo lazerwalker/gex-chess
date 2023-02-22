@@ -39,6 +39,11 @@ body {
   margin-right: 15px;
 }
 
+.player-view .captured-pieces {
+  position: absolute;
+  bottom: 0px;
+}
+
 @font-face {
   font-family: 'BirdSeed';
   src: url('/libraries/birdseed.ttf') format('truetype')

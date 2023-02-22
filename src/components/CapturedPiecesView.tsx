@@ -20,5 +20,5 @@ export default function (props: Props) {
     ));
   });
 
-  return <div style={{ position: "absolute", bottom: "0" }}>{pieces}</div>;
+  return <div className="captured-pieces">{pieces}</div>;
 }

@@ -24,6 +24,7 @@ export default function (props: Props) {
         height: "120px",
         position: "absolute",
       }}
+      className="player-view"
     >
       <div
         style={{
