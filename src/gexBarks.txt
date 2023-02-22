@@ -1,6 +1,16 @@
+history.length <= 2
+weight: 10
+- And the game begins anew!
+- My first move! Did I do well?
+
 pgn === "1. e4"
-weight: 10000
+weight: 100
 - Ol' reliable!
+- That's my little king's pawn!
+
+pgn === "1. d4"
+weight: 100
+- Go forth, little queen's pawn!
 
 pgn === "1. e4 e5"
 weight: 10000
@@ -19,21 +29,24 @@ weight: 10
 move.piece === "b"
 weight: 10
 - A diagonal move, what a world!
-- Forgive me, father, for I have 
+- Forgive me, father, for I have moved. 
 - You son of a bishop!
 
 move.piece === "r"
+weight: 10
 - What the heck, a moving castle?!
 - They call it a rook, and yet there's no birds!
 - Call me Howl, because I have a moving castle!
 - I have a mean right rook!
 
 move.piece === "q"
+weight: 10
 - Long live the queen!
 - I'm not a monarchist, but...
 - Don't drink the water at Buckingham Palace!
 
 move.piece === "p"
+weight: 10
 - I'm just a little pawn! You wouldn't capture a pawn on its birthday!
 - Don't mind me, just pushing pawns around.
 - You can do it, little fella!
@@ -41,13 +54,14 @@ move.piece === "p"
 
 # Double pawn push
 move.flags.includes('b')
-weight: 2
+weight: 10
 - Run, Forest, run!
 - Move forward, little guy!
 - Call me Macklemore, because I love to pawn!
 - ONE square, TWO squares, ah ha hah!
 
 move.piece === 'n'
+weight: 10
 - My horse is so drunk he can't even move in a straight line!
 - My knight in shining armor!
 - Call me Night Rider, because I'm, uh, moving my knight!
@@ -71,6 +85,7 @@ weight: 100
 - Got 'em!
 - I'm gonna make him an offer he can't refuse.
 - Go ahead, make my day!
+- I didn't have a good joke here, good thing you gave me some new material!
 
 move.captured && move.piece === "p" && move.captured !== "p"
 weight: 500

@@ -20,5 +20,5 @@ export default function (props: Props) {
     ));
   });
 
-  return <div>{pieces}</div>;
+  return <div style={{ bottom: "0" }}>{pieces}</div>;
 }

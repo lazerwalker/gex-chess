@@ -3,3 +3,26 @@ history.length > 0
 - Hmm.
 - I simply move the pieces where they need to go.
 - Do you even know how to play this game?
+- You're bad at this game. I like that in a man.
+- I can't believe you thought you could win.
+- Yawn.
+
+move.flags.includes('c')
+weight: 10
+- How careless of you to just leave your pieces lying around like that.
+- That's mine now.
+- Oh, look what we have here?
+- Yawn, another capture.
+- Just keep giving me material.
+
+prev.inCheck() && !move.inCheck()
+weight: 1000
+- You won't get me that easily.
+- Try harder.
+- You thought you had me?
+- Yawn.
+
+move.promotion
+weight: 100
+- You really shouldn't have let me promote
+- Now you're in trouble
