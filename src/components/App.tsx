@@ -25,6 +25,7 @@ export default function () {
     if (!state.hasInteracted) return;
     const music = new Howl({
       src: ["./libraries/puzzle_game.mp3"],
+      loop: true,
     });
     music.play();
   }, [state.hasInteracted]);
