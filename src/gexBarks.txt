@@ -1,21 +1,222 @@
 pgn === "1. e4"
-- Opening E4, a true classic!
+weight: 10000
 - Ol' reliable!
-- Wow, not one for exciting openers, are you?
 
 pgn === "1. e4 e5"
+weight: 10000
 - And a classic response!
 
 move.to === "a1" && move.piece === "k"
+weight: 100000
 - Knight to A1! You can lead a horse to steak sauce, but you can't make them drink!
+
+move.piece === "k"
+weight: 10
+- The man himself moves!
+- King in the castle! King in the castle!
+- Just moving my lil guy around.
+
+move.piece === "b"
+weight: 10
+- A diagonal move, what a world!
+- Forgive me, father, for I have 
+- You son of a bishop!
+
+move.piece === "r"
+- What the heck, a moving castle?!
+- They call it a rook, and yet there's no birds!
+- Call me Howl, because I have a moving castle!
+- I have a mean right rook!
+
+move.piece === "q"
+- Long live the queen!
+- I'm not a monarchist, but...
+- Don't drink the water at Buckingham Palace!
+
+move.piece === "p"
+- I'm just a little pawn! You wouldn't capture a pawn on its birthday!
+- Don't mind me, just pushing pawns around.
+- You can do it, little fella!
+- Love to just move my little guys.
+
+# Double pawn push
+move.flags.includes('b')
+weight: 2
+- Run, Forest, run!
+- Move forward, little guy!
+- Call me Macklemore, because I love to pawn!
+- ONE square, TWO squares, ah ha hah!
+
+move.piece === 'n'
+- My horse is so drunk he can't even move in a straight line!
+- My knight in shining armor!
+- Call me Night Rider, because I'm, uh, moving my knight!
+
+move.flags.includes('k') || move.flags.includes('q')
+weight: 10000
+- Go and hide, little king!
+- Keep it safe, keep it secret.
+- Let me just hide my little friend off to the side here.
+- Get down, Mr. President!
+- The old swaperoo!
+
+
+# Normal capture
+move.flags.includes('c')
+weight: 100
+- I sunk your battleship!
+- I hope you weren't using that!
+- Ouch, that's gotta hurt!
+- That's a TKO!
+- Got 'em!
+- I'm gonna make him an offer he can't refuse.
+- Go ahead, make my day!
+
+move.captured && move.piece === "p" && move.captured !== "p"
+weight: 500
+- The humble pawn takes down an apex predator!
+- Wow, that's real embarassing for you!
+- Punching up!
+- Once a pawn a time...
+
+move.flags.includes('c') && prev.flags.includes('c')
+weight: 1000
+- And I recapture back!
+- And we trade!
+
+move.captured && move.piece === "b" && move.captured !== "b"
+weight: 1000
+- A bishop for a bishop!
+- Two clergy enter, one clergy leaves!
+
+move.captured && move.piece === "q" && move.captured === "q"
+weight: 10000
+- Rawr, a catfight!
+- Easy now, ladies!
+
+move.captured && move.captured === "b" && move.piece === "b"
+weight: 100
+- Took you out from an angle!
+- Bishop captures bishop!
+
+move.captured && move.captured === "p"
+weight: 200
+- A good old-fashioned pawn brawl!
+- Pawn captures pawn!
+
+move.captured && move.captured === "n"
+weight: 200
+- Horsey down!
+- Knight down!
+- Call the glue factory, we've got material for them!
+- Good knight!
+
+move.captured && move.piece === "n"
+weight: 200
+- Captured by a knight? You really took an L.
+
+move.captured && move.piece === "p"
+weight: 200
+- Say hello to my little friend!
+
+move.captured && move.captured === "q"
+weight: 200
+- M'lady!
+- Death to the queen!
+- I think this is what they call 'regicide'
+- Ding dong, the witch is dead!
+
+move.captured && (move.captured === "r" || move.piece === "r")
+weight: 200
+- You took my bait -- rook, line, and sinker!
+- You're stuck between a rook and a hard place!
+- Here's rooking at you, kid!
+
+move.captured === "r"
+- And the trebuchet takes down the castle!
+- She came in like a wrecking ball!
+
+# promotion
+move.flags.includes('p')
+weight: 10000
+- King me!
+- King me!
+- My wimpy pawn turned into a powerful queen? Chess says trans rights!
+- My power level is over 9000!
+- My power grows!
+
+# En passant
+move.flags.includes('e')
+weight: 10000
+- Excuse me while I *passant* gas
+- How is this a legal move?!
+- That's what you get for moving too quickly!
+- En garde! En passant! Beaucoup de French!
 
 # Sicilian Defense
 pgn === "1. e4 c5"
 weight: 10000
 - Never go in against a Sicilian when death is on the line!
 
+# French Defense
+pgn === "1. e4 e6 2. d4 d5"
+weight: 10000
+- Hon hon hon!
+- Vive la defense francaise!
+
+# Slav defence
+pgn === "1. d4 d5 2. c4 c6
+weight: 10000
+- I'm slav-ishly devoted to this defense!
+
+# Grob
+pgn === "1. g4"
+weight: 10000
+- Oh my Grob!
+
 # Bongcloud
 pgn === "1. e4 f6 2. Ke2 Nc6 3. Kf3"
 weight: 10000
 - Hey, man, I dunno what you're smokin', but can you get me a hookup?
 
+# Ruy lopez
+pgn === "1. e4 e5 2. Nf3 Nc6 3. Bb5."
+weight: 10000
+- Buenos dias. Mi nombre es Ruy Lopez
+- My name is Ruy Lopez. You killed my father. Prepare to die.
+
+# Italian
+1.e4 e5 2.Nf3 Nc6 3.Bc4
+weight: 10000
+- It's not delivery, it's l'Italiano!
+- You come to me on this, the day of my daughter's wedding, and play into my Italian game?
+
+# Queen's gambit
+pgn === "1. d4 d5 2. c4"
+weight: 10000
+- The Queen's Gambit! The opening from the show!
+- Awwww yeah, the Queen's Gambit!
+- Call me Beth Harmon, because I'm the queen's gambit!
+
+prev.inCheck() && !move.inCheck()
+- Don't mind me, just scootching out of the way!
+- Hey, that's not very nice!
+- Thought you had me, did ya?
+- You won't get me that easily!
+- Hey, I'm kinging here!
+- That's not a very nice way to treat a king!
+- If you come for the king, you'd best not miss.
+
+move.inCheck()
+weight: 1000
+- En garde!
+- Your king's looking rather tasty right now!
+- My liege.
+- The last time I had a checkmate, I was dating someone from central Europe! Oh, that was a Czech mate.
+- Yeah, you better run!
+- Garçon, check please!
+- Check yourself before you wreck yourself!
+
+# Generic barks
+!!move
+- I'm playing 4-dimensional chess, only in two dimensions!
